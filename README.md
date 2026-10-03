@@ -26,7 +26,7 @@
 | `SELLER_NAME` | Наименование продавца для юридических страниц |
 | `SELLER_INN` | ИНН продавца |
 | `SELLER_ADDRESS` | Адрес продавца |
-| `PRIVACY_EMAIL` | Email для обращений по персональным данным |
+| `PRIVACY_EMAIL` | Необязательно: email для обращений по персональным данным; если не задан, на сайте указан телефон магазина |
 | `DATABASE_URL` | Строка подключения Timeweb PostgreSQL |
 | `DATABASE_CA_CERT` | CA-сертификат PostgreSQL целиком, вместе с BEGIN/END CERTIFICATE |
 | `METRIKA_ID` | Необязательно: ID счётчика Яндекс Метрики |

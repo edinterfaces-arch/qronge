@@ -8,7 +8,7 @@ import { products, home, productPage, infoPage, notFound, sitemap, categoryPaths
 
 const production=process.env.NODE_ENV==='production', port=Number(process.env.PORT||3000);
 if(production){
- const required=['PUBLIC_ORIGIN','ADMIN_PASSWORD','SELLER_NAME','SELLER_INN','SELLER_ADDRESS','PRIVACY_EMAIL'];
+ const required=['PUBLIC_ORIGIN','ADMIN_PASSWORD','SELLER_NAME','SELLER_INN','SELLER_ADDRESS'];
  for(const key of required)if(!process.env[key])throw new Error(`Set ${key} before launch.`);
  if(!/^https:\/\//.test(config.origin)||/your-domain|example\./.test(config.origin))throw new Error('Set the real HTTPS origin.');
  if(process.env.ADMIN_PASSWORD.length<20)throw new Error('ADMIN_PASSWORD must have at least 20 characters.');

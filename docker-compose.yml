@@ -14,7 +14,7 @@ services:
       SELLER_NAME: ${SELLER_NAME:?Set SELLER_NAME in the Timeweb App Platform variables}
       SELLER_INN: ${SELLER_INN:?Set SELLER_INN in the Timeweb App Platform variables}
       SELLER_ADDRESS: ${SELLER_ADDRESS:?Set SELLER_ADDRESS in the Timeweb App Platform variables}
-      PRIVACY_EMAIL: ${PRIVACY_EMAIL:?Set PRIVACY_EMAIL in the Timeweb App Platform variables}
+      PRIVACY_EMAIL: ${PRIVACY_EMAIL:-}
       DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL for the external PostgreSQL database}
       DATABASE_CA_CERT: ${DATABASE_CA_CERT:?Set DATABASE_CA_CERT for PostgreSQL TLS verification}
       METRIKA_ID: ${METRIKA_ID:-}
