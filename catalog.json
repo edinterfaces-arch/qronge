@@ -7,6 +7,9 @@
     "description": "Модель M5 в линейке электровелосипедов QRONGE. Комплектацию подтвердим перед покупкой.",
     "specs": [],
     "price": 58000,
+    "retailPrice": 84900,
+    "retailSource": "Futumag · M5 45 Ah",
+    "retailUrl": "https://futumag.ru/catalog/elektrovelosipy/QRONGE/",
     "variants": [
       {
         "sku": "R1010101",
@@ -25,6 +28,9 @@
     "description": "Электровелосипед QRONGE M4. Оставьте заявку на покупку с самовывозом.",
     "specs": [],
     "price": 54000,
+    "retailPrice": 82900,
+    "retailSource": "Futumag · M4 45 Ah",
+    "retailUrl": "https://futumag.ru/catalog/elektrovelosipy/QRONGE/",
     "variants": [
       {
         "sku": "R1010095",
@@ -88,6 +94,9 @@
       ]
     ],
     "price": 27000,
+    "retailPrice": 45990,
+    "retailSource": "Re-Volt · QRONGE Waterfall 2.35",
+    "retailUrl": "https://re-volt.ru/catalog/elektrovelosipy/elektrovelosiped_qronge_waterfall_2_35/",
     "variants": [
       {
         "sku": "R1010038",
@@ -162,6 +171,9 @@
       ]
     ],
     "price": 31000,
+    "retailPrice": 56985,
+    "retailSource": "Яндекс Маркет · Zephyr 48 В / 13,5 А·ч",
+    "retailUrl": "https://m.integration.vs.market.yandex.net/card/elektrovelosiped-qronge-zephyr-275-350w-48v135ah-do-75-km/5952955074",
     "variants": [
       {
         "sku": "R1010045",
@@ -199,6 +211,9 @@
       ]
     ],
     "price": 35000,
+    "retailPrice": 52990,
+    "retailSource": "Re-Volt · QRONGE Waterfall 4.0, 48 В / 18 А·ч",
+    "retailUrl": "https://re-volt.ru/catalog/elektrovelosipy/elektrovelosiped_qronge_waterfall_4_0/",
     "variants": [
       {
         "sku": "R1010035",
@@ -245,6 +260,9 @@
       ]
     ],
     "price": 37000,
+    "retailPrice": 56990,
+    "retailSource": "Re-Volt · QRONGE Mirage",
+    "retailUrl": "https://re-volt.ru/catalog/gorodskie/",
     "variants": [
       {
         "sku": "R1010032",
