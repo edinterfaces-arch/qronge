@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      TRUST_PROXY: "1"
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:?Set PUBLIC_ORIGIN in the Timeweb App Platform variables}
+      ADMIN_USER: ${ADMIN_USER:-manager}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in the Timeweb App Platform variables}
+      SELLER_NAME: ${SELLER_NAME:?Set SELLER_NAME in the Timeweb App Platform variables}
+      SELLER_INN: ${SELLER_INN:?Set SELLER_INN in the Timeweb App Platform variables}
+      SELLER_ADDRESS: ${SELLER_ADDRESS:?Set SELLER_ADDRESS in the Timeweb App Platform variables}
+      PRIVACY_EMAIL: ${PRIVACY_EMAIL:?Set PRIVACY_EMAIL in the Timeweb App Platform variables}
+      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL for the external PostgreSQL database}
+      DATABASE_CA_CERT: ${DATABASE_CA_CERT:?Set DATABASE_CA_CERT for PostgreSQL TLS verification}
+      METRIKA_ID: ${METRIKA_ID:-}

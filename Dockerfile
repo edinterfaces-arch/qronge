@@ -1,9 +1,10 @@
 FROM node:24-bookworm-slim
 WORKDIR /app
-COPY --chown=node:node package.json config.mjs render.mjs server.mjs backup.mjs catalog.json ./
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+COPY --chown=node:node config.mjs render.mjs server.mjs catalog.json ./
 COPY --chown=node:node public ./public
-RUN mkdir -p /app/data /app/backups && chown -R node:node /app/data /app/backups
 USER node
-ENV NODE_ENV=production PORT=3000 DATA_DIR=/app/data
+ENV NODE_ENV=production PORT=3000
 EXPOSE 3000
 CMD ["node", "server.mjs"]

@@ -1,8 +1,9 @@
+.git
 .env
+.env.*
+node_modules
 data
 backups
-docs
 tests
-node_modules
-.git
-*.zip
+docs
+dist
