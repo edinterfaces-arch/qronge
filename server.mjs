@@ -44,7 +44,7 @@ async function lead(req,res){
  let digits=text(input.phone,24).replace(/\D/g,'');if(digits.length===10)digits='7'+digits;if(digits.length===11&&digits[0]==='8')digits='7'+digits;
  if(!/^7\d{10}$/.test(digits))return json(res,400,{error:'Укажите телефон в формате +7 999 123-45-67.'});
  if(input.consent!==true)return json(res,400,{error:'Необходимо согласие на обработку данных для ответа на заявку.'});
- if(!Number.isInteger(input.quantity)||input.quantity<1||input.quantity>999)return json(res,400,{error:'Укажите количество от 1 до 999.'});
+ if(!Number.isInteger(input.quantity)||input.quantity<config.bulkFrom||input.quantity>999)return json(res,400,{error:`Минимальный оптовый заказ — ${config.bulkFrom} шт. одной модели.`});
  if(typeof input.requestId!=='string'||!/^[\da-f-]{36}$/i.test(input.requestId))return json(res,400,{error:'Обновите страницу перед отправкой.'});
  const model=text(input.model,60),p=products.find(p=>p.slug===model),variant=text(input.variant,40);
  if(model&&!p)return json(res,400,{error:'Выберите модель из каталога.'});
@@ -55,7 +55,7 @@ async function lead(req,res){
  if(prior){if(prior.fingerprint!==fingerprint)return json(res,409,{error:'Данные заявки изменились. Обновите страницу и повторите.'});return json(res,200,{ok:true,id:prior.id});}
  if(await limited(req,'leads',10))return json(res,429,{error:'Лимит заявок на этот час исчерпан. Позвоните нам, и мы поможем с заказом.'});
  const id='Q-'+randomUUID().slice(0,8).toUpperCase(),created=new Date().toISOString(),bulk=input.quantity>=config.bulkFrom;
- const unitPrice=p&&saleActive()?(bulk?p.price:p.price+config.singleUnitSurcharge):null;
+ const unitPrice=p&&saleActive()?p.price:null;
  const inserted=await pool.query('INSERT INTO leads VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) ON CONFLICT(request_id) DO NOTHING RETURNING id',[id,input.requestId,fingerprint,created,name,phone,model,variant,input.quantity,unitPrice,bulk?1:0,'2026-10-02-v1',JSON.stringify(attribution),path]);
  if(!inserted.rowCount){const concurrent=(await pool.query('SELECT id,fingerprint FROM leads WHERE request_id=$1',[input.requestId])).rows[0];if(concurrent.fingerprint!==fingerprint)return json(res,409,{error:'Данные заявки изменились. Обновите страницу и повторите.'});return json(res,200,{ok:true,id:concurrent.id});}
  // Success is returned ONLY after the durable database write completes.

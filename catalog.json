@@ -1,5 +1,77 @@
 [
   {
+    "slug": "m5",
+    "name": "M5",
+    "category": "bike",
+    "tag": "Серия M",
+    "description": "Модель M5 в линейке электровелосипедов QRONGE. Комплектацию подтвердим перед покупкой.",
+    "specs": [],
+    "price": 58000,
+    "variants": [
+      {
+        "sku": "R1010101",
+        "color": "чёрный",
+        "stock": 124
+      }
+    ],
+    "image": "/assets/m5.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "m4",
+    "name": "M4",
+    "category": "bike",
+    "tag": "Серия M",
+    "description": "Электровелосипед QRONGE M4. Оставьте заявку на покупку с самовывозом.",
+    "specs": [],
+    "price": 54000,
+    "variants": [
+      {
+        "sku": "R1010095",
+        "color": "чёрный",
+        "stock": 367
+      }
+    ],
+    "image": "/assets/m4.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "m3-pro-plus",
+    "name": "M3 Pro+",
+    "category": "bike",
+    "tag": "Серия M",
+    "description": "Версия Pro+ в линейке M. Комплектацию этой версии подтвердим перед покупкой.",
+    "specs": [],
+    "price": 49000,
+    "variants": [
+      {
+        "sku": "R1010072",
+        "color": "чёрный",
+        "stock": 296
+      }
+    ],
+    "image": "/assets/m3-pro-plus.webp",
+    "imageNote": "На фото базовая M3 Pro. Внешний вид версии Pro+ уточним перед покупкой."
+  },
+  {
+    "slug": "m3-plus",
+    "name": "M3+",
+    "category": "bike",
+    "tag": "Серия M",
+    "description": "Электровелосипед серии M. Комплектацию этой версии подтвердим перед покупкой.",
+    "specs": [],
+    "price": 37000,
+    "variants": [
+      {
+        "sku": "R1010096",
+        "color": "чёрный",
+        "stock": 172
+      }
+    ],
+    "image": "/assets/m3-plus.webp",
+    "imageNote": "На фото базовая M3. Внешний вид версии M3+ уточним перед покупкой."
+  },
+  {
     "slug": "waterfall-235",
     "name": "Waterfall 2.35",
     "category": "bike",
@@ -196,78 +268,6 @@
       }
     ],
     "image": "/assets/mirage.webp",
-    "imageNote": ""
-  },
-  {
-    "slug": "m3-plus",
-    "name": "M3+",
-    "category": "bike",
-    "tag": "Серия M",
-    "description": "Электровелосипед серии M. Комплектацию этой версии подтвердим перед покупкой.",
-    "specs": [],
-    "price": 37000,
-    "variants": [
-      {
-        "sku": "R1010096",
-        "color": "чёрный",
-        "stock": 172
-      }
-    ],
-    "image": "/assets/m3-plus.webp",
-    "imageNote": "На фото базовая M3. Внешний вид версии M3+ уточним перед покупкой."
-  },
-  {
-    "slug": "m3-pro-plus",
-    "name": "M3 Pro+",
-    "category": "bike",
-    "tag": "Серия M",
-    "description": "Версия Pro+ в линейке M. Комплектацию этой версии подтвердим перед покупкой.",
-    "specs": [],
-    "price": 49000,
-    "variants": [
-      {
-        "sku": "R1010072",
-        "color": "чёрный",
-        "stock": 296
-      }
-    ],
-    "image": "/assets/m3-pro-plus.webp",
-    "imageNote": "На фото базовая M3 Pro. Внешний вид версии Pro+ уточним перед покупкой."
-  },
-  {
-    "slug": "m4",
-    "name": "M4",
-    "category": "bike",
-    "tag": "Серия M",
-    "description": "Электровелосипед QRONGE M4. Оставьте заявку на покупку с самовывозом.",
-    "specs": [],
-    "price": 54000,
-    "variants": [
-      {
-        "sku": "R1010095",
-        "color": "чёрный",
-        "stock": 367
-      }
-    ],
-    "image": "/assets/m4.webp",
-    "imageNote": ""
-  },
-  {
-    "slug": "m5",
-    "name": "M5",
-    "category": "bike",
-    "tag": "Серия M",
-    "description": "Модель M5 в линейке электровелосипедов QRONGE. Комплектацию подтвердим перед покупкой.",
-    "specs": [],
-    "price": 58000,
-    "variants": [
-      {
-        "sku": "R1010101",
-        "color": "чёрный",
-        "stock": 124
-      }
-    ],
-    "image": "/assets/m5.webp",
     "imageNote": ""
   },
   {
