@@ -7,14 +7,14 @@ import { config, saleActive } from './config.mjs';
 import { products, home, productPage, infoPage, notFound, sitemap, categoryPaths, escape } from './render.mjs';
 
 const production=process.env.NODE_ENV==='production', port=Number(process.env.PORT||3000);
-if(production){
+const {Pool}=pg;
+const databaseUrl=process.env.DATABASE_URL?.trim();
+if(production&&databaseUrl){
  const required=['PUBLIC_ORIGIN','ADMIN_PASSWORD','SELLER_NAME','SELLER_INN','SELLER_ADDRESS'];
  for(const key of required)if(!process.env[key])throw new Error(`Set ${key} before launch.`);
  if(!/^https:\/\//.test(config.origin)||/your-domain|example\./.test(config.origin))throw new Error('Set the real HTTPS origin.');
  if(process.env.ADMIN_PASSWORD.length<20)throw new Error('ADMIN_PASSWORD must have at least 20 characters.');
 }
-const {Pool}=pg;
-const databaseUrl=process.env.DATABASE_URL?.trim();
 if(production&&databaseUrl&&!process.env.DATABASE_CA_CERT)throw new Error('Set DATABASE_CA_CERT to the PostgreSQL CA certificate before launch.');
 const pool=databaseUrl?new Pool({connectionString:databaseUrl,ssl:production?{ca:process.env.DATABASE_CA_CERT.replace(/\\n/g,'\n'),rejectUnauthorized:true}:undefined,max:10,idleTimeoutMillis:30000,connectionTimeoutMillis:10000}):null;
 if(pool)await pool.query(`CREATE TABLE IF NOT EXISTS leads(id TEXT PRIMARY KEY, request_id TEXT UNIQUE NOT NULL, fingerprint TEXT NOT NULL, created_at TIMESTAMPTZ NOT NULL, name TEXT NOT NULL, phone TEXT NOT NULL, model TEXT NOT NULL, variant TEXT NOT NULL, quantity INTEGER NOT NULL, price INTEGER, bulk INTEGER NOT NULL, consent TEXT NOT NULL, attribution TEXT NOT NULL, path TEXT NOT NULL);
