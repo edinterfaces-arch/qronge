@@ -139,6 +139,9 @@
       ]
     ],
     "price": 30000,
+    "retailPrice": 56000,
+    "retailSource": "i-drift · Meteors 36 В / 12,8 А·ч",
+    "retailUrl": "https://i-drift.ru/products/elektrovelosiped-qronge-meteors-350w-26r-li-ion-36v-128ah",
     "variants": [
       {
         "sku": "R1010088",
