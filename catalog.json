@@ -9,7 +9,7 @@
     "price": 58000,
     "retailPrice": 84900,
     "retailSource": "Futumag · M5 45 Ah",
-    "retailUrl": "https://futumag.ru/catalog/elektrovelosipy/QRONGE/",
+    "retailUrl": "https://tula.futumag.ru/catalog/elektrovelosipy/QRONGE/elektrovelosiped_qronge_m5_45ah_60v/",
     "variants": [
       {
         "sku": "R1010101",
@@ -30,7 +30,7 @@
     "price": 54000,
     "retailPrice": 82900,
     "retailSource": "Futumag · M4 45 Ah",
-    "retailUrl": "https://futumag.ru/catalog/elektrovelosipy/QRONGE/",
+    "retailUrl": "https://krasnoyarsk.futumag.ru/catalog/elektrovelosipy/QRONGE/elektrovelosiped_qronge_m4_45ah_60v/",
     "variants": [
       {
         "sku": "R1010095",
@@ -211,7 +211,7 @@
       ]
     ],
     "price": 35000,
-    "retailPrice": 52990,
+    "retailPrice": 68990,
     "retailSource": "Re-Volt · QRONGE Waterfall 4.0, 48 В / 18 А·ч",
     "retailUrl": "https://re-volt.ru/catalog/elektrovelosipy/elektrovelosiped_qronge_waterfall_4_0/",
     "variants": [
@@ -260,9 +260,9 @@
       ]
     ],
     "price": 37000,
-    "retailPrice": 56990,
-    "retailSource": "Re-Volt · QRONGE Mirage",
-    "retailUrl": "https://re-volt.ru/catalog/gorodskie/",
+    "retailPrice": 80000,
+    "retailSource": "UralElectronica · Mirage 48 В / 15 А·ч",
+    "retailUrl": "https://uralelectronica.ru/catalog/elektrovelosipy/qronge/14765/",
     "variants": [
       {
         "sku": "R1010032",
