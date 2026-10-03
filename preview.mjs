@@ -1,14 +1,20 @@
 // Run from the project directory: node preview.mjs
-import { products, home, productPage, infoPage } from './render.mjs';
+import { products, wholesalePage, productPage, infoPage } from './render.mjs';
+import { home, blogPage, articlePage, legalPage, documentPage, pendingDocuments } from './pages.mjs';
+import { articles, articlePath } from './articles.mjs';
 import { writeFileSync,readFileSync } from 'node:fs';
-const pages={'/':home(),'/elektrovelosipedy/':home('bike','/elektrovelosipedy/'),'/elektrosamokaty/':home('scooter','/elektrosamokaty/'),'/elektromototsikly/':home('moto','/elektromototsikly/'),'/privacy/':infoPage('privacy'),'/terms/':infoPage('terms')};
+const pages={'/':home(),'/opt/':wholesalePage(),'/elektrosamokaty/':wholesalePage('scooter','/elektrosamokaty/'),'/elektromototsikly/':wholesalePage('moto','/elektromototsikly/'),'/privacy/':infoPage('privacy'),'/terms/':infoPage('terms')};
+pages['/blog/']=blogPage();pages['/legal/']=legalPage();
+for(const a of articles)pages[articlePath(a)]=articlePage(a);
+for(const slug of Object.keys(pendingDocuments))pages['/legal/'+slug+'/']=documentPage(slug);
 for(const p of products)pages['/catalog/'+p.slug+'/']=productPage(p);
 const assets=Object.fromEntries(products.map(p=>[p.image,'data:image/webp;base64,'+readFileSync('public'+p.image).toString('base64')]));
-const clean=s=>s.replace(/<script src="\/app.js" defer><\/script>/,'').replace(/<link rel="canonical"[^>]+>/,'').replace(/<meta property="og:url"[^>]+>/,'');
+for(const name of ['store-front','store-parts','store-courier-bikes','store-puckipuppy','store-fatbikes'])assets['/assets/'+name+'.jpg']='data:image/jpeg;base64,'+readFileSync('public/assets/'+name+'.jpg').toString('base64');
+const clean=s=>s.replace(/<script src="\/app.js[^"]*" defer><\/script>/,'').replace(/<link rel="canonical"[^>]+>/,'').replace(/<meta property="og:url"[^>]+>/,'');
 const pageBodies=Object.fromEntries(Object.entries(pages).map(([path,html])=>[path,{title:html.match(/<title>(.*?)<\/title>/)[1],body:html.match(/<body>([\s\S]*)<\/body>/)[1]}]));
 const app=readFileSync('public/app.js','utf8').replace("let analytics=false, submitted=false, requestId=crypto.randomUUID(), lastPayload='';","let analytics=false, submitted=false, requestId=(crypto.randomUUID ? crypto.randomUUID() : 'preview'), lastPayload='';").replace("e.preventDefault();let phone=","e.preventDefault();alert('Заявка на сайте не отправляется. Чтобы обсудить цену и доставку, позвоните: +7 925 708-79-99.');return;let phone=");
 const safe=v=>JSON.stringify(v).replace(/</g,'\\u003c');
 const script=`const previewPages=${safe(pageBodies)};const previewAssets=${safe(assets)};const previewApp=${safe(app)};function initPreview(){document.querySelectorAll('img').forEach(i=>{const src=i.getAttribute('src');if(previewAssets[src])i.src=previewAssets[src]});const n=document.createElement('div');n.style='background:#fff1e5;color:#66360f;padding:9px 16px;text-align:center;font:13px Arial';n.innerHTML='Витрина QRONGE · Заказ и доставка — по телефону <a href="tel:+79257087999">+7 925 708-79-99</a>'; document.body.prepend(n);new Function(previewApp)();}document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;const h=a.getAttribute('href');if(!h?.startsWith('/'))return;e.preventDefault();const [path,anchor]=h.split('#');if(previewPages[path]){document.body.innerHTML=previewPages[path].body;document.title=previewPages[path].title;initPreview();window.scrollTo(0,0);if(anchor)document.getElementById(anchor)?.scrollIntoView();}});initPreview();`;
-let html=clean(pages['/']).replace('<link rel="stylesheet" href="/style.css">','<style>'+readFileSync('public/style.css','utf8')+'</style>').replace('<link rel="icon" type="image/svg+xml" href="/favicon.svg">','<link rel="icon" href="data:image/svg+xml;base64,'+readFileSync('public/favicon.svg').toString('base64')+'">').replace('</body>','<script>'+script+'</script></body>');
+let html=clean(pages['/']).replace(/<link rel="stylesheet" href="\/style.css[^"]*">/,'<style>'+readFileSync('public/tokens.css','utf8')+readFileSync('public/style.css','utf8').replace(/@import[^;]+;/,'').replace("url('/assets/manrope-variable.ttf')","url('data:font/ttf;base64,"+readFileSync('public/assets/manrope-variable.ttf').toString('base64')+"')")+'</style>').replace(/<link rel="stylesheet" href="\/storefront.css[^"]*">/,'<style>'+readFileSync('public/storefront.css','utf8')+'</style>').replace(/<link rel="icon" type="image\/svg\+xml" href="\/favicon.svg[^"]*">/,'<link rel="icon" href="data:image/svg+xml;base64,'+readFileSync('public/favicon.svg').toString('base64')+'">').replace('</body>','<script>'+script+'</script></body>');
 writeFileSync('../qronge-preview.html',html);
 console.log('Preview updated:',Buffer.byteLength(html),'bytes');

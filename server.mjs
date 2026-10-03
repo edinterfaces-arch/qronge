@@ -4,7 +4,9 @@ import { resolve, extname } from 'node:path';
 import { randomUUID, createHash, timingSafeEqual } from 'node:crypto';
 import pg from 'pg';
 import { config, saleActive } from './config.mjs';
-import { products, home, productPage, infoPage, notFound, sitemap, categoryPaths, escape } from './render.mjs';
+import { home, blogPage, articlePage, legalPage, documentPage, pendingDocuments } from './pages.mjs';
+import { articles, articlePath } from './articles.mjs';
+import { products, wholesalePage, productPage, infoPage, notFound, sitemap, categoryPaths, escape } from './render.mjs';
 
 const production=process.env.NODE_ENV==='production', port=Number(process.env.PORT||3000);
 const {Pool}=pg;
@@ -28,7 +30,7 @@ async function limited(req,scope,max){
  const result=await pool.query('INSERT INTO rate_limits(key,count,expires) VALUES($1,1,$2) ON CONFLICT(key) DO UPDATE SET count=rate_limits.count+1 RETURNING count',[key,Date.now()+3600000]);
  return result.rows[0].count>max;
 }
-function headers(type='text/html; charset=utf-8'){return {'Content-Type':type,'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Content-Security-Policy':"default-src 'self'; script-src 'self' https://mc.yandex.ru https://mc.yandex.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com; frame-src https://mc.yandex.ru https://mc.yandex.com; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",'Cache-Control':'no-store'};}
+function headers(type='text/html; charset=utf-8'){return {'Content-Type':type,'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Content-Security-Policy':"default-src 'self'; script-src 'self' https://mc.yandex.ru https://mc.yandex.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com; frame-src https://mc.yandex.ru https://mc.yandex.com https://yandex.ru https://api-maps.yandex.ru; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",'Cache-Control':'no-store'};}
 function send(res,status,body,type,extra={}){res.writeHead(status,{...headers(type),...extra});res.end(body);}
 function json(res,status,obj){send(res,status,JSON.stringify(obj),'application/json; charset=utf-8');}
 async function body(req){let raw='';for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>16000)throw Object.assign(new Error('Слишком большой запрос.'),{status:413});}try{return JSON.parse(raw)}catch{throw Object.assign(new Error('Неверный формат заявки.'),{status:400});}}
@@ -81,12 +83,17 @@ const server=http.createServer(async(req,res)=>{
   if(path==='/robots.txt')return send(res,200,`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /privacy/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&model /\nSitemap: ${config.origin}/sitemap.xml\n`,'text/plain; charset=utf-8');
   if(path==='/sitemap.xml')return send(res,200,sitemap(),'application/xml; charset=utf-8');
   if(path==='/')return send(res,200,home());
+  if(path==='/blog/')return send(res,200,blogPage());
+  if(path==='/legal/')return send(res,200,legalPage());
+  const article=articles.find(a=>path===articlePath(a));if(article)return send(res,200,articlePage(article));
+  const documentSlug=path.match(/^\/legal\/([^/]+)\/$/)?.[1];if(Object.hasOwn(pendingDocuments,documentSlug))return send(res,200,documentPage(documentSlug));
+  if(path==='/elektrovelosipedy/'||path==='/elektrovelosipedy'){res.writeHead(301,{Location:'/opt/'+u.search});return res.end();}
   if(path==='/privacy/'||path==='/terms/')return send(res,200,infoPage(path.split('/')[1]));
-  for(const [cat,route] of Object.entries(categoryPaths))if(path===route)return send(res,200,home(cat,route));
+  for(const [cat,route] of Object.entries(categoryPaths))if(path===route)return send(res,200,wholesalePage(cat,route));
   const p=products.find(p=>path===`/catalog/${p.slug}/`);if(p)return send(res,200,productPage(p));
-  if(!path.endsWith('/')&&!extname(path)&&(products.some(p=>path===`/catalog/${p.slug}`)||Object.values(categoryPaths).includes(path+'/')||['/privacy','/terms'].includes(path))){res.writeHead(308,{Location:path+'/'+u.search});return res.end();}
+  if(!path.endsWith('/')&&!extname(path)&&(products.some(p=>path===`/catalog/${p.slug}`)||Object.values(categoryPaths).includes(path+'/')||['/privacy','/terms','/blog','/legal',...articles.map(a=>articlePath(a).slice(0,-1)),...Object.keys(pendingDocuments).map(slug=>'/legal/'+slug)].includes(path))){res.writeHead(308,{Location:path+'/'+u.search});return res.end();}
   const file=resolve(staticRoot,'.'+path);
-  if(file.startsWith(staticRoot+'/')&&existsSync(file)&&extname(file))return send(res,200,readFileSync(file),({'.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg'})[extname(file)]||'application/octet-stream',{'Cache-Control':'public, max-age=3600'});
+  if(file.startsWith(staticRoot+'/')&&existsSync(file)&&extname(file))return send(res,200,readFileSync(file),({'.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.ttf':'font/ttf'})[extname(file)]||'application/octet-stream',{'Cache-Control':'public, max-age=3600'});
   return send(res,404,notFound());
  }catch(error){if(!res.headersSent)json(res,error.status||500,{error:error.status?error.message:'Не удалось обработать запрос. Повторите позже или позвоните нам.'});else res.end();console.error('Request failed:',error.name);}
 });
