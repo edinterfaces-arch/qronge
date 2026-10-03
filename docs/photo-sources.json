@@ -1,0 +1,167 @@
+[
+  {
+    "model": "Mirage",
+    "file": "public/assets/mirage.webp",
+    "source": "https://www.qronge.com/products/mirage",
+    "image": "https://cdn.shopify.com/s/files/1/0801/4456/4441/files/2_b4788829-955b-46dd-98f4-89ce6a7fc01a.jpg?v=1772529547",
+    "color": "White",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": [
+      1800,
+      1800
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/mirage.webp"
+  },
+  {
+    "model": "Zephyr",
+    "file": "public/assets/zephyr.webp",
+    "source": "https://www.qronge.com/products/zephyr-ebike",
+    "image": "https://cdn.shopify.com/s/files/1/0801/4456/4441/files/2_784b612d-401b-47b2-bddb-6d897d0d99d1.jpg?v=1772528198",
+    "color": "Silvery Grey",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": [
+      1800,
+      1800
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/zephyr.webp"
+  },
+  {
+    "model": "Meteor / Meteors",
+    "file": "public/assets/meteor.webp",
+    "source": "https://www.qronge.com/products/meteors",
+    "image": "https://cdn.shopify.com/s/files/1/0801/4456/4441/files/2_c0f84b25-dbfb-4105-81a4-da10be7b2eb9.jpg?v=1772529246",
+    "color": "Black",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": [
+      1800,
+      1800
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/meteor.webp"
+  },
+  {
+    "model": "X1 Spark",
+    "file": "public/assets/x1-spark.webp",
+    "source": "https://www.qronge.com/products/x1-spark",
+    "image": "https://cdn.shopify.com/s/files/1/0801/4456/4441/files/2-1_4.jpg?v=1788423860",
+    "color": "Black",
+    "match": "Official X1 Spark M photo; exact M/L variant in the spreadsheet is unconfirmed.",
+    "dimensions": [
+      1800,
+      1800
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/x1-spark.webp"
+  },
+  {
+    "model": "M3+ (unconfirmed; photo is M3)",
+    "file": "public/assets/m3-plus.webp",
+    "source": "https://re-volt.ru/catalog/elektrovelosipedy/elektrovelosiped_dvukhmestnyy_qronge_m3_16r_1000w/",
+    "image": "https://re-volt.ru/upload/dev2fun_opengraph/7bf/0wwfcup07u9p1t735sgtgwzol1y2hgg2.jpg",
+    "color": "Black",
+    "match": "Exact dealer model name except M3+ is unverified; image is M3.",
+    "dimensions": [
+      682,
+      586
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/m3-plus.webp"
+  },
+  {
+    "model": "M4",
+    "file": "public/assets/m4.webp",
+    "source": "https://futumag.ru/catalog/elektrovelosipedy/QRONGE/elektrovelosiped_qronge_m4_45ah_60v/",
+    "image": "https://futumag.ru/upload/iblock/1c5/60odnr9ayttkrl9o58uc9gv7wu708dku.png",
+    "color": "Black",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": "see image",
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/m4.webp"
+  },
+  {
+    "model": "M5",
+    "file": "public/assets/m5.webp",
+    "source": "https://re-volt.ru/catalog/elektrovelosipedy/elektrovelosiped_qronge_m5/",
+    "image": "https://re-volt.ru/upload/iblock/25c/sah6sa5r322mq79bi498ir0s7n6t21hm.jpg",
+    "color": "Black",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": [
+      800,
+      600
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/m5.webp"
+  },
+  {
+    "model": "Waterfall 2.35",
+    "file": "public/assets/waterfall-235.webp",
+    "source": "https://re-volt.ru/catalog/elektrovelosipedy/elektrovelosiped_qronge_waterfall_2_35/",
+    "image": "https://re-volt.ru/upload/dev2fun_opengraph/b66/j201074e2uao2dbf8rx9pwv5ycw95kc4.png",
+    "color": "White",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": [
+      2160,
+      2160
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/waterfall-235.webp"
+  },
+  {
+    "model": "Waterfall 4.0",
+    "file": "public/assets/waterfall-40.webp",
+    "source": "https://re-volt.ru/catalog/elektrovelosipedy/elektrovelosiped_qronge_waterfall_4_0/",
+    "image": "https://re-volt.ru/upload/iblock/761/csytdeb4oti9jksc1g6myerxi4zbsk2g.JPG",
+    "color": "Black",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": [
+      1800,
+      1800
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/waterfall-40.webp"
+  },
+  {
+    "model": "X1 Pro",
+    "file": "public/assets/x1-pro.webp",
+    "source": "https://re-volt.ru/catalog/elektrosamokaty/elektrosamokat_s_sidenem_skladnoy_qronge_x1_pro_750w_li_ion_48v20ah/",
+    "image": "https://re-volt.ru/upload/dev2fun_opengraph/786/7c9uf8stt1djzvvl5qwb17xc32h3ynie.jpg",
+    "color": "Black",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": [
+      1052,
+      997
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/x1-pro.webp"
+  },
+  {
+    "model": "M3 Pro+ (unconfirmed; photo is M3 Pro)",
+    "file": "public/assets/m3-pro-plus.webp",
+    "source": "https://futumag.ru/catalog/elektrovelosipedy/QRONGE/elektrovelosiped_qronge_m3_pro/",
+    "image": "https://futumag.ru/upload/iblock/a2d/7jcdc8pxtmcry5v6qdys405pcp0v0c25.png",
+    "color": "Black",
+    "match": "M3 Pro photo only; plus version unverified.",
+    "dimensions": [
+      1000,
+      1000
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/m3-pro-plus.webp"
+  },
+  {
+    "model": "X1",
+    "file": "public/assets/x1.webp",
+    "source": "https://i-drift.ru/products/elektrosamokat-s-sidenem-qronge-x1-750w-li-ion-48v-125ah",
+    "image": "https://i-drift.ru/files/products/qronge-x1-2.800x600w.jpg",
+    "color": "Black",
+    "match": "Named model match; exact Russian stock equipment must be confirmed.",
+    "dimensions": [
+      800,
+      600
+    ],
+    "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
+    "siteFile": "public/assets/x1.webp"
+  }
+]

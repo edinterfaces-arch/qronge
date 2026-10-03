@@ -1,0 +1,345 @@
+[
+  {
+    "slug": "waterfall-235",
+    "name": "Waterfall 2.35",
+    "category": "bike",
+    "tag": "Для города",
+    "description": "Самый доступный электровелосипед в этой партии. Колёса 20 × 2,35 дюйма.",
+    "specs": [
+      [
+        "Колёса",
+        "20 × 2,35″"
+      ],
+      [
+        "Аккумулятор",
+        "48 В / 13,5 А·ч"
+      ]
+    ],
+    "price": 27000,
+    "variants": [
+      {
+        "sku": "R1010038",
+        "color": "чёрный",
+        "stock": 33
+      },
+      {
+        "sku": "R1010039",
+        "color": "белый",
+        "stock": 28
+      },
+      {
+        "sku": "R1010040",
+        "color": "синий",
+        "stock": 36
+      },
+      {
+        "sku": "R1010030",
+        "color": "зелёный",
+        "stock": 30
+      }
+    ],
+    "image": "/assets/waterfall-235.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "meteor",
+    "name": "Meteor",
+    "category": "bike",
+    "tag": "Колёса 26 дюймов",
+    "description": "Электровелосипед с колёсами 26 дюймов и аккумулятором 36 В / 12,8 А·ч.",
+    "specs": [
+      [
+        "Колёса",
+        "26″"
+      ],
+      [
+        "Аккумулятор",
+        "36 В / 12,8 А·ч"
+      ]
+    ],
+    "price": 30000,
+    "variants": [
+      {
+        "sku": "R1010088",
+        "color": "серебристо-голубой",
+        "stock": 49
+      },
+      {
+        "sku": "R1010090",
+        "color": "чёрный",
+        "stock": 46
+      }
+    ],
+    "image": "/assets/meteor.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "zephyr",
+    "name": "Zephyr",
+    "category": "bike",
+    "tag": "Колёса 27,5 дюйма",
+    "description": "Электровелосипед с внешним аккумулятором и колёсами 27,5 дюйма.",
+    "specs": [
+      [
+        "Колёса",
+        "27,5″"
+      ],
+      [
+        "Аккумулятор",
+        "48 В / 13,5 А·ч"
+      ]
+    ],
+    "price": 31000,
+    "variants": [
+      {
+        "sku": "R1010045",
+        "color": "синий",
+        "stock": 29
+      },
+      {
+        "sku": "R1010046",
+        "color": "красный",
+        "stock": 22
+      },
+      {
+        "sku": "R1010047",
+        "color": "цвет уточняется",
+        "stock": 3
+      }
+    ],
+    "image": "/assets/zephyr.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "waterfall-40",
+    "name": "Waterfall 4.0",
+    "category": "bike",
+    "tag": "Широкие шины",
+    "description": "Электровелосипед на широких шинах 20 × 4,0 дюйма.",
+    "specs": [
+      [
+        "Колёса",
+        "20 × 4,0″"
+      ],
+      [
+        "Аккумулятор",
+        "48 В / 18 А·ч"
+      ]
+    ],
+    "price": 35000,
+    "variants": [
+      {
+        "sku": "R1010035",
+        "color": "чёрный",
+        "stock": 54
+      },
+      {
+        "sku": "R1010036",
+        "color": "белый",
+        "stock": 43
+      },
+      {
+        "sku": "R1010037",
+        "color": "синий",
+        "stock": 59
+      },
+      {
+        "sku": "R1010031",
+        "color": "зелёный",
+        "stock": 61
+      }
+    ],
+    "image": "/assets/waterfall-40.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "mirage",
+    "name": "Mirage",
+    "category": "bike",
+    "tag": "Складная рама",
+    "description": "Складной электровелосипед с колёсами 20 дюймов.",
+    "specs": [
+      [
+        "Колёса",
+        "20″"
+      ],
+      [
+        "Аккумулятор",
+        "48 В / 15 А·ч"
+      ],
+      [
+        "Рама",
+        "Складная"
+      ]
+    ],
+    "price": 37000,
+    "variants": [
+      {
+        "sku": "R1010032",
+        "color": "чёрный",
+        "stock": 140
+      },
+      {
+        "sku": "R1010062",
+        "color": "белый",
+        "stock": 20
+      },
+      {
+        "sku": "R1010063",
+        "color": "розовый",
+        "stock": 18
+      },
+      {
+        "sku": "R1010064",
+        "color": "голубой (оттенок уточняется)",
+        "stock": 23
+      }
+    ],
+    "image": "/assets/mirage.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "m3-plus",
+    "name": "M3+",
+    "category": "bike",
+    "tag": "Серия M",
+    "description": "Электровелосипед серии M. Комплектацию этой версии подтвердим перед покупкой.",
+    "specs": [],
+    "price": 37000,
+    "variants": [
+      {
+        "sku": "R1010096",
+        "color": "чёрный",
+        "stock": 172
+      }
+    ],
+    "image": "/assets/m3-plus.webp",
+    "imageNote": "На фото базовая M3. Внешний вид версии M3+ уточним перед покупкой."
+  },
+  {
+    "slug": "m3-pro-plus",
+    "name": "M3 Pro+",
+    "category": "bike",
+    "tag": "Серия M",
+    "description": "Версия Pro+ в линейке M. Комплектацию этой версии подтвердим перед покупкой.",
+    "specs": [],
+    "price": 49000,
+    "variants": [
+      {
+        "sku": "R1010072",
+        "color": "чёрный",
+        "stock": 296
+      }
+    ],
+    "image": "/assets/m3-pro-plus.webp",
+    "imageNote": "На фото базовая M3 Pro. Внешний вид версии Pro+ уточним перед покупкой."
+  },
+  {
+    "slug": "m4",
+    "name": "M4",
+    "category": "bike",
+    "tag": "Серия M",
+    "description": "Электровелосипед QRONGE M4. Оставьте заявку на покупку с самовывозом.",
+    "specs": [],
+    "price": 54000,
+    "variants": [
+      {
+        "sku": "R1010095",
+        "color": "чёрный",
+        "stock": 367
+      }
+    ],
+    "image": "/assets/m4.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "m5",
+    "name": "M5",
+    "category": "bike",
+    "tag": "Серия M",
+    "description": "Модель M5 в линейке электровелосипедов QRONGE. Комплектацию подтвердим перед покупкой.",
+    "specs": [],
+    "price": 58000,
+    "variants": [
+      {
+        "sku": "R1010101",
+        "color": "чёрный",
+        "stock": 124
+      }
+    ],
+    "image": "/assets/m5.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "x1",
+    "name": "X1",
+    "category": "scooter",
+    "tag": "Электросамокат",
+    "description": "Электросамокат QRONGE X1 для городских поездок.",
+    "specs": [],
+    "price": 23000,
+    "variants": [
+      {
+        "sku": "R1010004",
+        "color": "чёрный",
+        "stock": 190
+      }
+    ],
+    "image": "/assets/x1.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "x1-pro",
+    "name": "X1 Pro",
+    "category": "scooter",
+    "tag": "Электросамокат",
+    "description": "Версия Pro в линейке электросамокатов QRONGE.",
+    "specs": [],
+    "price": 25000,
+    "variants": [
+      {
+        "sku": "R1010007",
+        "color": "чёрный",
+        "stock": 194
+      }
+    ],
+    "image": "/assets/x1-pro.webp",
+    "imageNote": ""
+  },
+  {
+    "slug": "x1-spark",
+    "name": "X1 Spark",
+    "category": "moto",
+    "tag": "Электромотоцикл",
+    "description": "Электромотоцикл с двигателем 1 500 Вт и аккумулятором 60 В / 23,4 А·ч.",
+    "specs": [
+      [
+        "Мощность",
+        "1 500 Вт"
+      ],
+      [
+        "Аккумулятор",
+        "60 В / 23,4 А·ч"
+      ],
+      [
+        "Колёса",
+        "17″ / 14″"
+      ]
+    ],
+    "price": 64000,
+    "variants": [
+      {
+        "sku": "R1010112",
+        "color": "оранжевый",
+        "stock": 50
+      },
+      {
+        "sku": "R1010113",
+        "color": "чёрный",
+        "stock": 136
+      }
+    ],
+    "image": "/assets/x1-spark.webp",
+    "imageNote": "На фото X1 Spark M. Исполнение партии уточним перед покупкой."
+  }
+]
