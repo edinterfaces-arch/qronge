@@ -37,4 +37,4 @@ Dockerfile копирует articles.mjs и pages.mjs вместе с серве
 
 Проверка `npm test`: маршруты, статьи, canonical, внутренние ссылки и якоря, фотографии, редиректы и разрешение карты. Интеграционный тест PostgreSQL выполняется в GitHub Actions, где есть тестовая база; локально без DATABASE_URL он пропускается.
 
-Встроенный браузер подтвердил работу отдельного URL виджета Яндекс Карт и правильный торговый комплекс; внутри iframe карта в этом просмотре оставалась пустой. Рядом сохранена прямая ссылка. Мобильный визуальный просмотр не подтверждён: инструмент не применил запрошенный размер окна.
+Production verification: the deployed Timeweb home page includes the new storefront, all store photos and the confirmed address. The embedded Yandex map loaded correctly on the published HTTPS site. Mobile visual verification remains unconfirmed because the browser viewport override was not applied.
