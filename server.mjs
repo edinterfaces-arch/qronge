@@ -13,14 +13,14 @@ if(production){
  if(!/^https:\/\//.test(config.origin)||/your-domain|example\./.test(config.origin))throw new Error('Set the real HTTPS origin.');
  if(process.env.ADMIN_PASSWORD.length<20)throw new Error('ADMIN_PASSWORD must have at least 20 characters.');
 }
-if(production&&!process.env.DATABASE_URL)throw new Error('Set DATABASE_URL before launch.');
-if(production&&!process.env.DATABASE_CA_CERT)throw new Error('Set DATABASE_CA_CERT to the PostgreSQL CA certificate before launch.');
 const {Pool}=pg;
-const pool=new Pool({connectionString:process.env.DATABASE_URL||'postgresql://localhost/qronge',ssl:production?{ca:process.env.DATABASE_CA_CERT.replace(/\\n/g,'\n'),rejectUnauthorized:true}:undefined,max:10,idleTimeoutMillis:30000,connectionTimeoutMillis:10000});
-await pool.query(`CREATE TABLE IF NOT EXISTS leads(id TEXT PRIMARY KEY, request_id TEXT UNIQUE NOT NULL, fingerprint TEXT NOT NULL, created_at TIMESTAMPTZ NOT NULL, name TEXT NOT NULL, phone TEXT NOT NULL, model TEXT NOT NULL, variant TEXT NOT NULL, quantity INTEGER NOT NULL, price INTEGER, bulk INTEGER NOT NULL, consent TEXT NOT NULL, attribution TEXT NOT NULL, path TEXT NOT NULL);
+const databaseUrl=process.env.DATABASE_URL?.trim();
+if(production&&databaseUrl&&!process.env.DATABASE_CA_CERT)throw new Error('Set DATABASE_CA_CERT to the PostgreSQL CA certificate before launch.');
+const pool=databaseUrl?new Pool({connectionString:databaseUrl,ssl:production?{ca:process.env.DATABASE_CA_CERT.replace(/\\n/g,'\n'),rejectUnauthorized:true}:undefined,max:10,idleTimeoutMillis:30000,connectionTimeoutMillis:10000}):null;
+if(pool)await pool.query(`CREATE TABLE IF NOT EXISTS leads(id TEXT PRIMARY KEY, request_id TEXT UNIQUE NOT NULL, fingerprint TEXT NOT NULL, created_at TIMESTAMPTZ NOT NULL, name TEXT NOT NULL, phone TEXT NOT NULL, model TEXT NOT NULL, variant TEXT NOT NULL, quantity INTEGER NOT NULL, price INTEGER, bulk INTEGER NOT NULL, consent TEXT NOT NULL, attribution TEXT NOT NULL, path TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires BIGINT NOT NULL);`);
 async function cleanup(){await pool.query("DELETE FROM leads WHERE created_at < NOW() - INTERVAL '90 days'");await pool.query('DELETE FROM rate_limits WHERE expires < $1',[Date.now()]);}
-cleanup().catch(error=>console.error('Database cleanup failed:',error.name));setInterval(()=>cleanup().catch(error=>console.error('Database cleanup failed:',error.name)),3600000).unref();
+if(pool){cleanup().catch(error=>console.error('Database cleanup failed:',error.name));setInterval(()=>cleanup().catch(error=>console.error('Database cleanup failed:',error.name)),3600000).unref();}
 const hash=v=>createHash('sha256').update(v).digest('hex');
 async function limited(req,scope,max){
  const ip=process.env.TRUST_PROXY==='1'?String(req.headers['x-forwarded-for']||req.socket.remoteAddress).split(',').at(-1).trim():req.socket.remoteAddress;
@@ -34,6 +34,7 @@ function json(res,status,obj){send(res,status,JSON.stringify(obj),'application/j
 async function body(req){let raw='';for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>16000)throw Object.assign(new Error('Слишком большой запрос.'),{status:413});}try{return JSON.parse(raw)}catch{throw Object.assign(new Error('Неверный формат заявки.'),{status:400});}}
 const text=(value,max=100)=>typeof value==='string'?value.trim().slice(0,max):'';
 async function lead(req,res){
+ if(!pool)return json(res,503,{error:'Приём заявок ещё не настроен. Позвоните в магазин.'});
  if(req.headers.origin!==new URL(config.origin).origin)return json(res,403,{error:'Обновите страницу и отправьте заявку с сайта магазина.'});
  if(!String(req.headers['content-type']||'').startsWith('application/json'))return json(res,415,{error:'Отправьте заявку через форму на сайте или позвоните в магазин.'});
  if(await limited(req,'requests',60))return json(res,429,{error:'Слишком много запросов. Позвоните нам или попробуйте через час.'});
@@ -62,6 +63,7 @@ async function lead(req,res){
 }
 function authorized(req){const expected=`Basic ${Buffer.from(`${process.env.ADMIN_USER||'manager'}:${process.env.ADMIN_PASSWORD||''}`).toString('base64')}`;return !!process.env.ADMIN_PASSWORD&&timingSafeEqual(Buffer.from(hash(req.headers.authorization||'')),Buffer.from(hash(expected)));}
 async function admin(req,res,path){
+ if(!pool)return send(res,503,'Раздел заявок станет доступен после подключения базы данных.','text/plain; charset=utf-8');
  if(!authorized(req)){if(await limited(req,'admin-auth',30))return send(res,429,'Попробуйте позже.','text/plain; charset=utf-8');return send(res,401,'Требуется доступ менеджера.','text/plain; charset=utf-8',{'WWW-Authenticate':'Basic realm="QRONGE manager", charset="UTF-8"'});}
  const list=(await pool.query('SELECT id,created_at,name,phone,model,variant,quantity,price,bulk,attribution,path,consent FROM leads ORDER BY created_at DESC LIMIT 5000')).rows;
  if(path==='/admin/leads.csv'){const cols=['id','created_at','name','phone','model','variant','quantity','price','bulk','attribution','path','consent'];const safe=v=>'"'+String(v??'').replace(/^[=+@\-\t\r]/,"'$&").replace(/"/g,'""')+'"';return send(res,200,'\uFEFF'+[cols.join(';'),...list.map(r=>cols.map(k=>safe(r[k])).join(';'))].join('\r\n'),'text/csv; charset=utf-8',{'Content-Disposition':'attachment; filename="qronge-leads.csv"'});}
@@ -72,7 +74,7 @@ const server=http.createServer(async(req,res)=>{
  try{
   const u=new URL(req.url,config.origin),path=decodeURIComponent(u.pathname);
   if(path==='/healthz')return json(res,200,{ok:true});
-  if(path==='/readyz'){await pool.query('SELECT 1');return json(res,200,{ok:true});}
+  if(path==='/readyz'){if(!pool)return json(res,503,{ok:false,database:'not_configured'});await pool.query('SELECT 1');return json(res,200,{ok:true});}
   if(path==='/api/leads'){if(req.method!=='POST')return json(res,405,{error:'Method not allowed'});return await lead(req,res);}
   if(!['GET','HEAD'].includes(req.method))return send(res,405,'Method not allowed','text/plain');
   if(path==='/admin'||path.startsWith('/admin/'))return await admin(req,res,path);
@@ -89,5 +91,5 @@ const server=http.createServer(async(req,res)=>{
  }catch(error){if(!res.headersSent)json(res,error.status||500,{error:error.status?error.message:'Не удалось обработать запрос. Повторите позже или позвоните нам.'});else res.end();console.error('Request failed:',error.name);}
 });
 server.requestTimeout=20000;server.headersTimeout=10000;
-server.listen(port,'0.0.0.0',()=>console.log(`QRONGE ready at http://localhost:${port}`));
-for(const sig of ['SIGINT','SIGTERM'])process.on(sig,()=>server.close(async()=>{await pool.end();process.exit(0)}));
+server.listen(port,'0.0.0.0',()=>console.log(`QRONGE ready at http://localhost:${port}${pool?'':' (database not configured; leads are disabled)'}`));
+for(const sig of ['SIGINT','SIGTERM'])process.on(sig,()=>server.close(async()=>{if(pool)await pool.end();process.exit(0)}));
