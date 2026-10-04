@@ -11,12 +11,27 @@
  function updateSummary(){const p=product(),q=Number(quantity.value);$('order-summary').textContent=!Number.isInteger(q)||q<config.bulkFrom?`Минимальный оптовый заказ — ${config.bulkFrom} шт. одной модели.`:p&&p.price?`Оптовая цена: ${money(p.price)} / шт. × ${q} шт. = ${money(p.price*q)} за партию.`:p?'Уточним актуальную оптовую цену выбранной модели.':'Поможем подобрать модель под ваш бюджет.';}
  function updateVariants(){variant.replaceChildren(new Option('Уточнить с менеджером',''));product()?.variants.forEach(v=>variant.add(new Option(v.color.charAt(0).toUpperCase()+v.color.slice(1),v.sku)));if(product()?.variants.length===1)variant.value=product().variants[0].sku;updateSummary()}
  function resetForm(){if(submitted){$('form-fields').hidden=false;$('form-status').replaceChildren();submitted=false;requestId=crypto.randomUUID();lastPayload='';}}
- function goToForm(slug,bulk=false){if(!form)return;resetForm();model.value=slug||'';quantity.value=config.bulkFrom;updateVariants();track(bulk?'bulk_open':'lead_open',{model:slug||'selection'});$('request').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});setTimeout(()=>$('phone').focus({preventScroll:true}),350);}
- document.querySelectorAll('[data-product]').forEach(button=>button.onclick=()=>goToForm(button.dataset.product));
+ // Move the existing form into one native modal; keep its IDs and submission flow.
+ let requestDialog=null,requestOpener=null;
+ if(form&&typeof HTMLDialogElement!=='undefined'&&typeof HTMLDialogElement.prototype.showModal==='function'){
+  requestDialog=document.createElement('dialog');requestDialog.id='request-dialog';requestDialog.className='request-dialog';requestDialog.setAttribute('aria-labelledby','request-title');
+  const close=document.createElement('button');close.type='button';close.className='request-dialog-close';close.textContent='Закрыть';close.setAttribute('aria-label','Закрыть форму запроса');close.onclick=()=>requestDialog.close();
+  requestDialog.append(close,$('request'));document.body.append(requestDialog);
+  requestDialog.addEventListener('close',()=>{document.documentElement.classList.remove('request-dialog-open');if(requestOpener?.isConnected)requestOpener.focus({preventScroll:true});});
+  requestDialog.addEventListener('click',event=>{const rect=requestDialog.getBoundingClientRect();if(event.target===requestDialog&&(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom))requestDialog.close();});
+ }
+ function goToForm(slug,bulk=false){
+  if(!form)return;resetForm();model.value=slug||'';quantity.value=config.bulkFrom;updateVariants();track(bulk?'bulk_open':'lead_open',{model:slug||'selection'});
+  if(requestDialog){requestOpener=document.activeElement;if(!requestDialog.open)requestDialog.showModal();requestDialog.scrollTop=0;document.documentElement.classList.add('request-dialog-open');$('phone').focus({preventScroll:true});}
+  else{$('request').scrollIntoView({behavior:'auto'});$('phone').focus({preventScroll:true});}
+ }
+ document.querySelectorAll('[data-product]').forEach(button=>{button.setAttribute('aria-haspopup','dialog');button.onclick=()=>goToForm(button.dataset.product);});
+ document.querySelectorAll('a[href="#request"]').forEach(link=>{if(form){link.setAttribute('aria-haspopup','dialog');link.onclick=event=>{event.preventDefault();goToForm(model.value);};}});
  if($('bulk-button'))$('bulk-button').onclick=()=>goToForm('',true);
  if(!form)return;
  updateVariants();model.onchange=updateVariants;quantity.oninput=updateSummary;
  const params=new URLSearchParams(location.search), requested=params.get('model');if(requested&&config.products.some(p=>p.slug===requested)){model.value=requested;updateVariants()}
+ if(location.hash==='#request')goToForm(model.value);
  const attribution={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid'].forEach(key=>{const value=params.get(key);if(value)attribution[key]=value.slice(0,250)});
  // Keep only campaign attribution within the current session; never store customer fields.
  let prior={};try{prior=JSON.parse(sessionStorage.getItem('campaign')||'{}');if(Object.keys(attribution).length)sessionStorage.setItem('campaign',JSON.stringify(attribution));}catch{}
