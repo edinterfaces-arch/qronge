@@ -32,7 +32,7 @@
   };
 
   try {
-    if (localStorage.getItem('analytics-choice') === 'yes') {
+    if (localStorage.getItem('analytics-choice-v2') === 'yes') {
       window.qrongeStartMetrika();
     }
   } catch {
