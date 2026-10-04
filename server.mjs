@@ -28,8 +28,16 @@ async function limited(req,scope,max){
  const result=await pool.query('INSERT INTO rate_limits(key,count,expires) VALUES($1,1,$2) ON CONFLICT(key) DO UPDATE SET count=rate_limits.count+1 RETURNING count',[key,Date.now()+3600000]);
  return result.rows[0].count>max;
 }
-function headers(type='text/html; charset=utf-8'){return {'Content-Type':type,'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Content-Security-Policy':"default-src 'self'; script-src 'self' https://mc.yandex.ru https://mc.yandex.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com; frame-src https://mc.yandex.ru https://mc.yandex.com https://yandex.ru https://api-maps.yandex.ru; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",'Cache-Control':'no-store'};}
+// Exact origins from Yandex's CSP integration guide; private responses stay unframeable.
+const metrikaCollectors = ['ru','az','by','co.il','com','com.am','com.ge','com.tr','ee','fr','kg','kz','lt','lv','md','tj','tm','uz'].map(tld=>`https://mc.yandex.${tld}`).concat(['https://mc.webvisor.com','https://mc.webvisor.org']);
+const metrikaFrames = ['metrika.yandex.ru','analytics.yandex.by','analytics.yandex.com','analytics.yandex.com.tr','analytics.yandex.kz','analytics.yandex.ru','metr.yandex.by','metr.yandex.com','metr.yandex.com.tr','metr.yandex.kz','metr.yandex.ru','metrica.ya.ru','metrica.yandex','metrica.yandex.by','metrica.yandex.com','metrica.yandex.com.tr','metrica.yandex.kz','metrica.yandex.ru','metrika.ya.ru','metrika.yandex','metrika.yandex.by','metrika.yandex.com','metrika.yandex.com.tr','metrika.yandex.kz','metrika.yandex.uz'].map(host=>`https://${host}`).join(' ');
+function headers(type='text/html; charset=utf-8',publicPage=false){
+ const collectors=metrikaCollectors.join(' '), sockets=metrikaCollectors.map(origin=>origin.replace('https:','wss:')).join(' ');
+ return {'Content-Type':type,'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin',...(!publicPage?{'X-Frame-Options':'DENY'}:{}),'Permissions-Policy':'camera=(), microphone=(), geolocation=()',
+ 'Content-Security-Policy':`default-src 'self'; script-src 'self' ${collectors} https://yastatic.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: ${collectors}; connect-src 'self' ${collectors} ${sockets}; child-src blob: ${collectors}; frame-src blob: ${collectors} https://yandex.ru https://api-maps.yandex.ru; base-uri 'none'; form-action 'self'; frame-ancestors ${publicPage?metrikaFrames:"'none'"}`,'Cache-Control':'no-store'};
+}
 function send(res,status,body,type,extra={}){res.writeHead(status,{...headers(type),...extra});res.end(body);}
+function sendPage(res,status,body,extra={}){res.writeHead(status,{...headers('text/html; charset=utf-8',true),...extra});res.end(body);}
 function json(res,status,obj){send(res,status,JSON.stringify(obj),'application/json; charset=utf-8');}
 async function body(req){let raw='';for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>16000)throw Object.assign(new Error('Слишком большой запрос.'),{status:413});}try{return JSON.parse(raw)}catch{throw Object.assign(new Error('Неверный формат заявки.'),{status:400});}}
 const text=(value,max=100)=>typeof value==='string'?value.trim().slice(0,max):'';
@@ -80,18 +88,18 @@ const server=http.createServer(async(req,res)=>{
   if(path==='/admin'||path.startsWith('/admin/'))return await admin(req,res,path);
   if(path==='/robots.txt')return send(res,200,`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /healthz\nDisallow: /readyz\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&model /\nSitemap: ${config.origin}/sitemap.xml\n`,'text/plain; charset=utf-8');
   if(path==='/sitemap.xml')return send(res,200,sitemap(),'application/xml; charset=utf-8');
-  if(path==='/')return send(res,200,wholesalePage('bike','/'));
+  if(path==='/')return sendPage(res,200,wholesalePage('bike','/'));
   if(path==='/blog'||path.startsWith('/blog/'))return send(res,410,'<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><script src="/metrika.js?v=1"></script><title>Страница удалена | QRONGE</title></head><body><main><h1>Эта страница больше не публикуется</h1><p><a href="/">Перейти в оптовый каталог QRONGE</a></p></main></body></html>','text/html; charset=utf-8',{'X-Robots-Tag':'noindex, follow'});
   if(path==='/legal/'||path.startsWith('/legal/')){res.writeHead(308,{Location:'/'+u.search});return res.end();}
   if(path==='/elektrovelosipedy/'||path==='/elektrovelosipedy'){res.writeHead(301,{Location:'/'+u.search});return res.end();}
-  if(path==='/privacy/'||path==='/terms/')return send(res,200,infoPage(path.split('/')[1]));
+  if(path==='/privacy/'||path==='/terms/')return sendPage(res,200,infoPage(path.split('/')[1]));
   if(path==='/opt'||path==='/opt/'){res.writeHead(308,{Location:'/'+u.search});return res.end();}
-  for(const [cat,route] of Object.entries(categoryPaths))if(path===route)return send(res,200,wholesalePage(cat,route));
-  const p=products.find(p=>path===`/catalog/${p.slug}/`);if(p)return send(res,200,productPage(p));
+  for(const [cat,route] of Object.entries(categoryPaths))if(path===route)return sendPage(res,200,wholesalePage(cat,route));
+  const p=products.find(p=>path===`/catalog/${p.slug}/`);if(p)return sendPage(res,200,productPage(p));
   if(!path.endsWith('/')&&!extname(path)&&(products.some(p=>path===`/catalog/${p.slug}`)||Object.values(categoryPaths).includes(path+'/')||['/privacy','/terms'].includes(path))){res.writeHead(308,{Location:path+'/'+u.search});return res.end();}
   const file=resolve(staticRoot,'.'+path);
   if(file.startsWith(staticRoot+'/')&&existsSync(file)&&extname(file))return send(res,200,readFileSync(file),({'.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.ttf':'font/ttf'})[extname(file)]||'application/octet-stream',{'Cache-Control':'public, max-age=3600'});
-  return send(res,404,notFound());
+  return sendPage(res,404,notFound());
  }catch(error){if(!res.headersSent)json(res,error.status||500,{error:error.status?error.message:'Не удалось обработать запрос. Повторите позже или позвоните нам.'});else res.end();console.error('Request failed:',error.name);}
 });
 server.requestTimeout=20000;server.headersTimeout=10000;
