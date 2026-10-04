@@ -8,7 +8,7 @@
  if(config.metrikaId){let choice;try{choice=localStorage.getItem('analytics-choice')}catch{}if(choice==='yes')startAnalytics();else if(!choice)$('cookie-choice').hidden=false;$('analytics-accept').onclick=()=>{try{localStorage.setItem('analytics-choice','yes')}catch{}$('cookie-choice').hidden=true;startAnalytics()};$('analytics-decline').onclick=()=>{try{localStorage.setItem('analytics-choice','no')}catch{}$('cookie-choice').hidden=true};}
  document.querySelectorAll('[data-goal]').forEach(el=>el.addEventListener('click',()=>track(el.dataset.goal)));
  function product(){return config.products.find(p=>p.slug===model.value)}
- function updateSummary(){const p=product(),q=Number(quantity.value);$('order-summary').textContent=!Number.isInteger(q)||q<config.bulkFrom?`Минимальный оптовый заказ — ${config.bulkFrom} шт. одной модели.`:p&&p.price?`Оптовая цена: ${money(p.price)} / шт. × ${q} шт. = ${money(p.price*q)} за партию.`:p?'Уточним актуальную оптовую цену выбранной модели.':'Поможем подобрать модель под ваш бюджет.';}
+ function updateSummary(){const p=product(),q=Number(quantity.value);$('order-summary').textContent=!Number.isInteger(q)||q<config.minOrder?`Минимальный заказ — ${config.minOrder} шт.`:q<config.bulkFrom?`Заказ от ${config.minOrder} шт. возможен. Цену и условия согласуем индивидуально по телефону.`:p&&p.price?`Оптовая цена: ${money(p.price)} / шт. × ${q} шт. = ${money(p.price*q)} за партию.`:p?'Уточним актуальную оптовую цену выбранной модели.':'Поможем подобрать модель под ваш бюджет.';}
  function updateVariants(){variant.replaceChildren(new Option('Уточнить с менеджером',''));product()?.variants.forEach(v=>variant.add(new Option(v.color.charAt(0).toUpperCase()+v.color.slice(1),v.sku)));if(product()?.variants.length===1)variant.value=product().variants[0].sku;updateSummary()}
  function resetForm(){if(submitted){$('form-fields').hidden=false;$('form-status').replaceChildren();submitted=false;requestId=crypto.randomUUID();lastPayload='';}}
  // Move the existing form into one native modal; keep its IDs and submission flow.
@@ -21,7 +21,7 @@
   requestDialog.addEventListener('click',event=>{const rect=requestDialog.getBoundingClientRect();if(event.target===requestDialog&&(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom))requestDialog.close();});
  }
  function goToForm(slug,bulk=false){
-  if(!form)return;resetForm();model.value=slug||'';quantity.value=config.bulkFrom;updateVariants();track(bulk?'bulk_open':'lead_open',{model:slug||'selection'});
+  if(!form)return;resetForm();model.value=slug||'';quantity.value=bulk?config.bulkFrom:config.minOrder;updateVariants();track(bulk?'bulk_open':'lead_open',{model:slug||'selection'});
   if(requestDialog){requestOpener=document.activeElement;if(!requestDialog.open)requestDialog.showModal();requestDialog.scrollTop=0;document.documentElement.classList.add('request-dialog-open');$('phone').focus({preventScroll:true});}
   else{$('request').scrollIntoView({behavior:'auto'});$('phone').focus({preventScroll:true});}
  }

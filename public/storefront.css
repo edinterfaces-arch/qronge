@@ -308,12 +308,19 @@ html.request-dialog-open { overflow: hidden; }
 .catalog-store-info p { max-width: 52ch; font-size: 15px; line-height: 1.7; }
 .catalog-store-phone { display: inline-block; margin: 8px 0; font-size: 25px; font-weight: 700; }
 .catalog-store .map-panel iframe { height: 360px; }
+.catalog-contact { padding-block: 56px 72px; background: var(--color-paper-warm); }
+.catalog-contact > .container > h2 { margin: 0 0 28px; font-size: clamp(28px,3.2vw,40px); line-height: 1.2; }
+.catalog-contact .catalog-store-info { grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); }
+.catalog-contact .map-panel iframe { height: 380px; }
 @media(max-width:760px){
  .header-inner { grid-template-columns: minmax(0,1fr) auto; }
  .catalog-store { padding-block: 42px; }
  .catalog-store-photos { gap: 10px; }
  .catalog-store-info { grid-template-columns: 1fr; gap: 20px; }
  .catalog-store .map-panel iframe { height: 300px; }
+ .catalog-contact { padding-block: 42px; }
+ .catalog-contact .catalog-store-info { grid-template-columns: 1fr; }
+ .catalog-contact .map-panel iframe { height: 300px; }
 }
 @media(max-width:520px){
  .catalog-store-photos { grid-template-columns: 1fr; }
