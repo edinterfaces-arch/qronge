@@ -4,7 +4,7 @@ import { resolve, extname } from 'node:path';
 import { randomUUID, createHash, timingSafeEqual } from 'node:crypto';
 import pg from 'pg';
 import { config, saleActive } from './config.mjs';
-import { products, wholesalePage, productPage, infoPage, notFound, sitemap, categoryPaths, escape } from './render.mjs';
+import { products, canonicalModel, productAliases, wholesalePage, productPage, infoPage, notFound, sitemap, categoryPaths, escape } from './render.mjs';
 
 const production=process.env.NODE_ENV==='production', port=Number(process.env.PORT||3000);
 const {Pool}=pg;
@@ -54,7 +54,7 @@ async function lead(req,res){
  if(input.consent!==true)return json(res,400,{error:'Необходимо согласие на обработку данных для ответа на заявку.'});
   if(!Number.isInteger(input.quantity)||input.quantity<config.minOrder||input.quantity>999)return json(res,400,{error:`Минимальный заказ — ${config.minOrder} шт. Заказ от ${config.minOrder} до ${config.bulkFrom-1} штук согласуется индивидуально.`});
  if(typeof input.requestId!=='string'||!/^[\da-f-]{36}$/i.test(input.requestId))return json(res,400,{error:'Обновите страницу перед отправкой.'});
- const model=text(input.model,60),p=products.find(p=>p.slug===model),variant=text(input.variant,40);
+ const model=canonicalModel(text(input.model,60)),p=products.find(p=>p.slug===model),variant=text(input.variant,40);
  if(model&&!p)return json(res,400,{error:'Выберите модель из каталога.'});
  if(variant&&(!p||!p.variants.some(v=>v.sku===variant&&v.stock>0)))return json(res,400,{error:'Выберите доступный цвет выбранной модели.'});
  const attribution={};for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid']){if(input.attribution&&typeof input.attribution==='object'&&typeof input.attribution[key]==='string')attribution[key]=text(input.attribution[key],250);}
@@ -75,7 +75,7 @@ async function admin(req,res,path){
  if(!authorized(req)){if(await limited(req,'admin-auth',30))return send(res,429,'Попробуйте позже.','text/plain; charset=utf-8');return send(res,401,'Требуется доступ менеджера.','text/plain; charset=utf-8',{'WWW-Authenticate':'Basic realm="QRONGE manager", charset="UTF-8"'});}
  const list=(await pool.query('SELECT id,created_at,name,phone,model,variant,quantity,price,bulk,attribution,path,consent FROM leads ORDER BY created_at DESC LIMIT 5000')).rows;
  if(path==='/admin/leads.csv'){const cols=['id','created_at','name','phone','model','variant','quantity','price','bulk','attribution','path','consent'];const safe=v=>'"'+String(v??'').replace(/^[=+@\-\t\r]/,"'$&").replace(/"/g,'""')+'"';return send(res,200,'\uFEFF'+[cols.join(';'),...list.map(r=>cols.map(k=>safe(r[k])).join(';'))].join('\r\n'),'text/csv; charset=utf-8',{'Content-Disposition':'attachment; filename="qronge-leads.csv"'});}
- send(res,200,`<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Заявки QRONGE</title><style>body{font:15px/1.5 Arial;padding:25px;color:#222}table{border-collapse:collapse;width:100%}td,th{text-align:left;border-bottom:1px solid #ddd;padding:12px;vertical-align:top}small{color:#777}.wrap{overflow:auto}a{color:#285591}</style><h1>Заявки QRONGE</h1><p>${list.length} заявок · <a href="/admin/leads.csv">Скачать CSV</a> · <a href="/admin/">Обновить</a></p><p>Новые заявки появляются здесь. Перед поездкой клиента подтвердите наличие, комплектацию и стоимость. Уведомления в мессенджер пока не подключены.</p><div class="wrap"><table><thead><tr><th>Дата / номер</th><th>Покупатель</th><th>Модель</th><th>Количество</th><th>Цена из каталога</th><th>Источник</th></tr></thead><tbody>${list.map(r=>`<tr><td>${escape(new Date(r.created_at).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'}))}<br><small>${escape(r.id)}</small></td><td>${escape(r.name)}<br><a href="tel:${escape(r.phone)}">${escape(r.phone)}</a></td><td>${escape(products.find(p=>p.slug===r.model)?.name||'Помощь с выбором')}<br><small>${escape(r.variant||'Цвет уточнить')}</small></td><td>${r.quantity}${r.bulk?'<br>Оптовая цена':'<br><strong>Согласовать условия</strong>'}</td><td>${r.price?`${r.price} ₽ / шт.`:'По запросу'}</td><td>${escape(r.attribution)}<br><small>${escape(r.path)}</small></td></tr>`).join('')}</tbody></table></div></html>`);
+ send(res,200,`<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Заявки QRONGE</title><style>body{font:15px/1.5 Arial;padding:25px;color:#222}table{border-collapse:collapse;width:100%}td,th{text-align:left;border-bottom:1px solid #ddd;padding:12px;vertical-align:top}small{color:#777}.wrap{overflow:auto}a{color:#285591}</style><h1>Заявки QRONGE</h1><p>${list.length} заявок · <a href="/admin/leads.csv">Скачать CSV</a> · <a href="/admin/">Обновить</a></p><p>Новые заявки появляются здесь. Перед поездкой клиента подтвердите наличие, комплектацию и стоимость. Уведомления в мессенджер пока не подключены.</p><div class="wrap"><table><thead><tr><th>Дата / номер</th><th>Покупатель</th><th>Модель</th><th>Количество</th><th>Цена из каталога</th><th>Источник</th></tr></thead><tbody>${list.map(r=>`<tr><td>${escape(new Date(r.created_at).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'}))}<br><small>${escape(r.id)}</small></td><td>${escape(r.name)}<br><a href="tel:${escape(r.phone)}">${escape(r.phone)}</a></td><td>${escape(products.find(p=>p.slug===canonicalModel(r.model))?.name||'Помощь с выбором')}<br><small>${escape(r.variant||'Цвет уточнить')}</small></td><td>${r.quantity}${r.bulk?'<br>Оптовая цена':'<br><strong>Согласовать условия</strong>'}</td><td>${r.price?`${r.price} ₽ / шт.`:'По запросу'}</td><td>${escape(r.attribution)}<br><small>${escape(r.path)}</small></td></tr>`).join('')}</tbody></table></div></html>`);
 }
 const staticRoot=resolve('public');
 const server=http.createServer(async(req,res)=>{
@@ -95,6 +95,8 @@ const server=http.createServer(async(req,res)=>{
   if(path==='/privacy/'||path==='/terms/')return sendPage(res,200,infoPage(path.split('/')[1]));
   if(path==='/opt'||path==='/opt/'){res.writeHead(308,{Location:'/'+u.search});return res.end();}
   for(const [cat,route] of Object.entries(categoryPaths))if(path===route)return sendPage(res,200,wholesalePage(cat,route));
+  const oldSlug=path.match(/^\/catalog\/([^/]+)\/?$/)?.[1];
+  if(oldSlug&&Object.hasOwn(productAliases,oldSlug)){res.writeHead(301,{Location:`/catalog/${productAliases[oldSlug]}/`+u.search});return res.end();}
   const p=products.find(p=>path===`/catalog/${p.slug}/`);if(p)return sendPage(res,200,productPage(p));
   if(!path.endsWith('/')&&!extname(path)&&(products.some(p=>path===`/catalog/${p.slug}`)||Object.values(categoryPaths).includes(path+'/')||['/privacy','/terms'].includes(path))){res.writeHead(308,{Location:path+'/'+u.search});return res.end();}
   const file=resolve(staticRoot,'.'+path);

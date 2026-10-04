@@ -30,7 +30,7 @@
  if($('bulk-button'))$('bulk-button').onclick=()=>goToForm('',true);
  if(!form)return;
  updateVariants();model.onchange=updateVariants;quantity.oninput=updateSummary;
- const params=new URLSearchParams(location.search), requested=params.get('model');if(requested&&config.products.some(p=>p.slug===requested)){model.value=requested;updateVariants()}
+ const params=new URLSearchParams(location.search), requested=config.modelAliases?.[params.get('model')]||params.get('model');if(requested&&config.products.some(p=>p.slug===requested)){model.value=requested;updateVariants()}
  if(location.hash==='#request')goToForm(model.value);
  const attribution={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid'].forEach(key=>{const value=params.get(key);if(value)attribution[key]=value.slice(0,250)});
  // Keep only campaign attribution within the current session; never store customer fields.

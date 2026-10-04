@@ -8,8 +8,8 @@
     "specs": [],
     "price": 58000,
     "retailPrice": 84900,
-    "retailSource": "Futumag · M5 45 Ah",
-    "retailUrl": "https://tula.futumag.ru/catalog/elektrovelosipy/QRONGE/elektrovelosiped_qronge_m5_45ah_60v/",
+    "retailSource": "i-Drift",
+    "retailUrl": "https://i-drift.ru/products/elektroskuter-s-pedalyami-elektrovelosiped-polufetbajk-qronge-m5-16r-1200w-li-ion-60v-45ah",
     "variants": [
       {
         "sku": "R1010101",
@@ -18,7 +18,11 @@
       }
     ],
     "image": "/assets/m5.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "previousRetailPrice": 107990,
+    "retailPriceKind": "external",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "M5, 60 В / 45 А·ч; комплектацию нашей партии уточняйте"
   },
   {
     "slug": "m4",
@@ -44,11 +48,11 @@
     "retailPriceCalculation": "82900 * 54000 / 65000, rounded to nearest 100 RUB; approved pricing method from owner"
   },
   {
-    "slug": "m3-pro-plus",
-    "name": "M3 Pro+",
+    "slug": "m3-pro",
+    "name": "M3 Pro",
     "category": "bike",
     "tag": "Серия M",
-    "description": "Версия Pro+ в линейке M. Комплектацию этой версии подтвердим перед покупкой.",
+    "description": "Электровелосипед QRONGE M3 Pro для бизнеса. Комплектацию подтвердим перед покупкой.",
     "specs": [],
     "price": 49000,
     "variants": [
@@ -59,14 +63,21 @@
       }
     ],
     "image": "/assets/m3-pro-plus-photo-20261004.webp",
-    "imageNote": "На фото базовая M3 Pro. Внешний вид версии Pro+ уточним перед покупкой."
+    "imageNote": "",
+    "retailPrice": 63500,
+    "previousRetailPrice": 69900,
+    "retailPriceKind": "external",
+    "retailSource": "i-Drift",
+    "retailUrl": "https://i-drift.ru/products/elektrovelosiped-dvuhmestnyj-polufetbajk-qronge-m3-pro-16h30-1000w-li-ion-60v-286ah",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "M3 Pro, 60 В / 30 А·ч; комплектацию нашей партии уточняйте"
   },
   {
-    "slug": "m3-plus",
-    "name": "M3+",
+    "slug": "m3",
+    "name": "M3",
     "category": "bike",
     "tag": "Серия M",
-    "description": "Электровелосипед серии M. Комплектацию этой версии подтвердим перед покупкой.",
+    "description": "Электровелосипед QRONGE M3 для бизнеса. Комплектацию подтвердим перед покупкой.",
     "specs": [],
     "price": 37000,
     "variants": [
@@ -77,7 +88,14 @@
       }
     ],
     "image": "/assets/m3-plus-photo-20261004.webp",
-    "imageNote": "На фото базовая M3. Внешний вид версии M3+ уточним перед покупкой."
+    "imageNote": "",
+    "retailPrice": 53500,
+    "previousRetailPrice": 59900,
+    "retailPriceKind": "external",
+    "retailSource": "i-Drift",
+    "retailUrl": "https://i-drift.ru/products/elektrovelosiped-dvuhmestnyj-qronge-m3-18r-500w-li-ion-60v-208ah",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "M3, 60 В / 20,8 А·ч; комплектацию нашей партии уточняйте"
   },
   {
     "slug": "waterfall-235",
@@ -96,9 +114,9 @@
       ]
     ],
     "price": 27000,
-    "retailPrice": 68990,
-    "retailSource": "Re-Volt · QRONGE Waterfall 2.35",
-    "retailUrl": "https://re-volt.ru/catalog/elektrovelosipy/elektrovelosiped_qronge_waterfall_2_35/",
+    "retailPrice": 47900,
+    "retailSource": "i-Drift",
+    "retailUrl": "https://i-drift.ru/products/elektrovelosiped-skladnoj-na-lityh-diskah-qronge-waterfall-350w-20-li-ion-48v-135ah",
     "variants": [
       {
         "sku": "R1010038",
@@ -122,7 +140,11 @@
       }
     ],
     "image": "/assets/waterfall-235.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "previousRetailPrice": 54990,
+    "retailPriceKind": "external",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "Waterfall 2.35, 48 В / 13,5 А·ч"
   },
   {
     "slug": "meteor",
@@ -141,8 +163,8 @@
       ]
     ],
     "price": 30000,
-    "retailPrice": 56000,
-    "retailSource": "i-drift · Meteors 36 В / 12,8 А·ч",
+    "retailPrice": 49900,
+    "retailSource": "i-Drift",
     "retailUrl": "https://i-drift.ru/products/elektrovelosiped-qronge-meteors-350w-26r-li-ion-36v-128ah",
     "variants": [
       {
@@ -157,7 +179,11 @@
       }
     ],
     "image": "/assets/meteor-photo-20261004.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "previousRetailPrice": 56000,
+    "retailPriceKind": "external",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "Meteors, 36 В / 12,8 А·ч"
   },
   {
     "slug": "zephyr",
@@ -176,9 +202,9 @@
       ]
     ],
     "price": 31000,
-    "retailPrice": 56985,
-    "retailSource": "Яндекс Маркет · Zephyr 48 В / 13,5 А·ч",
-    "retailUrl": "https://m.integration.vs.market.yandex.net/card/elektrovelosiped-qronge-zephyr-275-350w-48v135ah-do-75-km/5952955074",
+    "retailPrice": 64990,
+    "retailSource": "Futumag",
+    "retailUrl": "https://futumag.ru/catalog/elektrovelosipedy/QRONGE/elektrovelosiped_qronge_zephyr/",
     "variants": [
       {
         "sku": "R1010045",
@@ -197,7 +223,11 @@
       }
     ],
     "image": "/assets/zephyr-photo-20261004.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "previousRetailPrice": 79000,
+    "retailPriceKind": "external",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "Zephyr, 48 В / 13,5 А·ч"
   },
   {
     "slug": "waterfall-40",
@@ -216,9 +246,9 @@
       ]
     ],
     "price": 35000,
-    "retailPrice": 68990,
-    "retailSource": "Re-Volt · QRONGE Waterfall 4.0, 48 В / 18 А·ч",
-    "retailUrl": "https://re-volt.ru/catalog/elektrovelosipy/elektrovelosiped_qronge_waterfall_4_0/",
+    "retailPrice": 64990,
+    "retailSource": "Futumag",
+    "retailUrl": "https://futumag.ru/catalog/elektrovelosipedy/QRONGE/elektrovelosiped_qronge_waterfall_4_0/?oid=18455",
     "variants": [
       {
         "sku": "R1010035",
@@ -242,7 +272,11 @@
       }
     ],
     "image": "/assets/waterfall-40-photo-20261004.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "previousRetailPrice": 85000,
+    "retailPriceKind": "external",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "Waterfall 4.0, 48 В / 18 А·ч"
   },
   {
     "slug": "mirage",
@@ -265,9 +299,9 @@
       ]
     ],
     "price": 37000,
-    "retailPrice": 80000,
-    "retailSource": "UralElectronica · Mirage 48 В / 15 А·ч",
-    "retailUrl": "https://uralelectronica.ru/catalog/elektrovelosipy/qronge/14765/",
+    "retailPrice": 58900,
+    "retailSource": "i-Drift",
+    "retailUrl": "https://i-drift.ru/products/elektrovelosiped-skladnoj-polufetbajk-qronge-mirage-500w-20h-30-li-ion-48v-15ah",
     "variants": [
       {
         "sku": "R1010032",
@@ -291,7 +325,11 @@
       }
     ],
     "image": "/assets/mirage-photo-20261004.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "previousRetailPrice": 74990,
+    "retailPriceKind": "external",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "Mirage, 48 В / 15 А·ч"
   },
   {
     "slug": "x1",
@@ -309,7 +347,14 @@
       }
     ],
     "image": "/assets/x1-photo-20261004.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "retailPrice": 39900,
+    "previousRetailPrice": 53000,
+    "retailPriceKind": "external",
+    "retailSource": "Futumag24",
+    "retailUrl": "https://futumag24.ru/products/elektrosamokat-qronge-x1",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "X1, 48 В / 12,5 А·ч; комплектацию нашей партии уточняйте"
   },
   {
     "slug": "x1-pro",
@@ -327,7 +372,14 @@
       }
     ],
     "image": "/assets/x1-pro-photo-20261004.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "retailPrice": 44900,
+    "previousRetailPrice": 52000,
+    "retailPriceKind": "external",
+    "retailSource": "i-Drift",
+    "retailUrl": "https://i-drift.ru/products/elektrosamokat-s-sidenem-skladnoj-qronge-x1-pro-750w-li-ion-48v-20ah",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "X1 Pro, 48 В / 20 А·ч; комплектацию нашей партии уточняйте"
   },
   {
     "slug": "x1-spark",
@@ -363,6 +415,13 @@
       }
     ],
     "image": "/assets/x1-spark.webp",
-    "imageNote": "На фото X1 Spark M. Исполнение партии уточним перед покупкой."
+    "imageNote": "На фото X1 Spark M. Исполнение партии уточним перед покупкой.",
+    "retailPrice": 87900,
+    "previousRetailPrice": 107990,
+    "retailPriceKind": "external",
+    "retailSource": "i-Drift",
+    "retailUrl": "https://i-drift.ru/products/elektromototsikl-pitbajk-podrostkovyj-qronge-x1-spark-l-1500w-li-ion-60v-234ah",
+    "retailCheckedAt": "2026-10-05",
+    "retailConfiguration": "X1 Spark L, 1500 Вт, 60 В / 23,4 А·ч"
   }
 ]
