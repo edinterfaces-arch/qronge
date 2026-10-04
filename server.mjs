@@ -78,10 +78,10 @@ const server=http.createServer(async(req,res)=>{
   if(path==='/api/leads'){if(req.method!=='POST')return json(res,405,{error:'Method not allowed'});return await lead(req,res);}
   if(!['GET','HEAD'].includes(req.method))return send(res,405,'Method not allowed','text/plain');
   if(path==='/admin'||path.startsWith('/admin/'))return await admin(req,res,path);
-  if(path==='/robots.txt')return send(res,200,`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&model /\nSitemap: ${config.origin}/sitemap.xml\n`,'text/plain; charset=utf-8');
+  if(path==='/robots.txt')return send(res,200,`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /healthz\nDisallow: /readyz\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&model /\nSitemap: ${config.origin}/sitemap.xml\n`,'text/plain; charset=utf-8');
   if(path==='/sitemap.xml')return send(res,200,sitemap(),'application/xml; charset=utf-8');
   if(path==='/')return send(res,200,wholesalePage('bike','/'));
-  if(path==='/blog'||path.startsWith('/blog/')){res.writeHead(308,{Location:'/'+u.search});return res.end();}
+  if(path==='/blog'||path.startsWith('/blog/'))return send(res,410,'<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="robots" content="noindex,follow"><title>Страница удалена | QRONGE</title><main><h1>Эта страница больше не публикуется</h1><p><a href="/">Перейти в оптовый каталог QRONGE</a></p></main></html>','text/html; charset=utf-8',{'X-Robots-Tag':'noindex, follow'});
   if(path==='/legal/'||path.startsWith('/legal/')){res.writeHead(308,{Location:'/'+u.search});return res.end();}
   if(path==='/elektrovelosipedy/'||path==='/elektrovelosipedy'){res.writeHead(301,{Location:'/'+u.search});return res.end();}
   if(path==='/privacy/'||path==='/terms/')return send(res,200,infoPage(path.split('/')[1]));
