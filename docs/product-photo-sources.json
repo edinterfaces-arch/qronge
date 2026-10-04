@@ -1,0 +1,143 @@
+{
+  "archive": "Qronge photo copy.zip",
+  "date": "2026-10-04",
+  "selection": "Clean product photos without promotional overlays. Existing variant caveats preserved. Only size/encoding/orientation optimized; no generated imagery.",
+  "images": [
+    {
+      "model": "M3 Pro+",
+      "source": "Qronge photo copy/M3PRO/Photo/τÖ╜σ║ò.png",
+      "sourceDimensions": [
+        1800,
+        1800
+      ],
+      "sourceSha256": "a9cccd517d3dd65285dc71b427f85c42d3ca383b3ca761ce157b87861960bb93",
+      "previousImage": "/assets/m3-pro-plus.webp",
+      "image": "/assets/m3-pro-plus-photo-20261004.webp",
+      "outputDimensions": [
+        1400,
+        1400
+      ],
+      "bytes": 139224,
+      "note": "На фото базовая M3 Pro. Внешний вид версии Pro+ уточним перед покупкой."
+    },
+    {
+      "model": "M3+",
+      "source": "Qronge photo copy/M3/Photo/1.jpeg",
+      "sourceDimensions": [
+        9504,
+        6336
+      ],
+      "sourceSha256": "ab6fc0288b1a64163b8fa77ffab4a31ccfce8039d491fa84b2fafc13ae840a53",
+      "previousImage": "/assets/m3-plus.webp",
+      "image": "/assets/m3-plus-photo-20261004.webp",
+      "outputDimensions": [
+        1400,
+        933
+      ],
+      "bytes": 77720,
+      "note": "На фото базовая M3. Внешний вид версии M3+ уточним перед покупкой."
+    },
+    {
+      "model": "Meteor",
+      "source": "Qronge photo copy/Meteors/Photo/µ╡üµÿƒτö╖Θ╗æ-2.jpg",
+      "sourceDimensions": [
+        1800,
+        1800
+      ],
+      "sourceSha256": "c51a72c6d33f8dfd2d32169599c0bcaea3521df7d43f1de40ea27042c019e6ba",
+      "previousImage": "/assets/meteor.webp",
+      "image": "/assets/meteor-photo-20261004.webp",
+      "outputDimensions": [
+        1400,
+        1400
+      ],
+      "bytes": 137894,
+      "note": ""
+    },
+    {
+      "model": "Zephyr",
+      "source": "Qronge photo copy/Zephyr/Photo/µû░µ¼╛Φô¥ 2 µ╢êσàë.jpg",
+      "sourceDimensions": [
+        1800,
+        1800
+      ],
+      "sourceSha256": "0c5c181e88973d7e3987287eff0be2508dff82e07fd1b29a1afa614b5cfc04c8",
+      "previousImage": "/assets/zephyr.webp",
+      "image": "/assets/zephyr-photo-20261004.webp",
+      "outputDimensions": [
+        1400,
+        1400
+      ],
+      "bytes": 134142,
+      "note": ""
+    },
+    {
+      "model": "Waterfall 4.0",
+      "source": "Qronge photo copy/Waterfall/Photo/Θ╗æΦë▓ µ╢êσàë2.jpg",
+      "sourceDimensions": [
+        1800,
+        1800
+      ],
+      "sourceSha256": "ff69fe80181ef7d42b5912314155962c6df8ef5467d1b15ef73fb10d55ad9ca1",
+      "previousImage": "/assets/waterfall-40.webp",
+      "image": "/assets/waterfall-40-photo-20261004.webp",
+      "outputDimensions": [
+        1400,
+        1400
+      ],
+      "bytes": 106008,
+      "note": ""
+    },
+    {
+      "model": "Mirage",
+      "source": "Qronge photo copy/Mirage/Photo/Θ╗æ2.jpg",
+      "sourceDimensions": [
+        1800,
+        1800
+      ],
+      "sourceSha256": "d978c9ddeed84ef53df1a4fcca882faae512493c281c53e92d7e71f8f36197cc",
+      "previousImage": "/assets/mirage.webp",
+      "image": "/assets/mirage-photo-20261004.webp",
+      "outputDimensions": [
+        1400,
+        1400
+      ],
+      "bytes": 103222,
+      "note": ""
+    },
+    {
+      "model": "X1",
+      "source": "Qronge photo copy/X1/Photo/τÖ╜σ║ò.jpg",
+      "sourceDimensions": [
+        2276,
+        1192
+      ],
+      "sourceSha256": "1bf1da0c7e28c8f34898114d78f5024f0596e21cf91f0b8c8d2c0f219a4c3b89",
+      "previousImage": "/assets/x1.webp",
+      "image": "/assets/x1-photo-20261004.webp",
+      "outputDimensions": [
+        1400,
+        733
+      ],
+      "bytes": 25114,
+      "note": ""
+    },
+    {
+      "model": "X1 Pro",
+      "source": "Qronge photo copy/X1pro/Photo/τÖ╜σ║ò.jpg",
+      "sourceDimensions": [
+        1920,
+        1080
+      ],
+      "sourceSha256": "6cc9cc8bef158aef9beaef174d3cc434abb5ed4270b671247435616e4f098c9b",
+      "previousImage": "/assets/x1-pro.webp",
+      "image": "/assets/x1-pro-photo-20261004.webp",
+      "outputDimensions": [
+        1400,
+        788
+      ],
+      "bytes": 30984,
+      "note": ""
+    }
+  ]
+}
