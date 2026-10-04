@@ -4,7 +4,7 @@
  const money=n=>new Intl.NumberFormat('ru-RU').format(n)+' ₽';
  let analytics=false, submitted=false, requestId=crypto.randomUUID(), lastPayload='';
  const track=(event,params={})=>{if(analytics&&window.ym)window.ym(Number(config.metrikaId),'reachGoal',event,params);};
- function startAnalytics(){if(analytics||!config.metrikaId)return;analytics=true;window.ym=window.ym||function(){(window.ym.a=window.ym.a||[]).push(arguments)};window.ym.l=Date.now();const script=document.createElement('script');script.src='https://mc.yandex.ru/metrika/tag.js';script.async=true;document.head.append(script);window.ym(Number(config.metrikaId),'init',{clickmap:false,trackLinks:true,accurateTrackBounce:true,webvisor:false});}
+ function startAnalytics(){if(analytics||!config.metrikaId)return;analytics=true;window.qrongeStartMetrika?.();}
  if(config.metrikaId){let choice;try{choice=localStorage.getItem('analytics-choice')}catch{}if(choice==='yes')startAnalytics();else if(!choice)$('cookie-choice').hidden=false;$('analytics-accept').onclick=()=>{try{localStorage.setItem('analytics-choice','yes')}catch{}$('cookie-choice').hidden=true;startAnalytics()};$('analytics-decline').onclick=()=>{try{localStorage.setItem('analytics-choice','no')}catch{}$('cookie-choice').hidden=true};}
  document.querySelectorAll('[data-goal]').forEach(el=>el.addEventListener('click',()=>track(el.dataset.goal)));
  function product(){return config.products.find(p=>p.slug===model.value)}

@@ -6,7 +6,7 @@ export const config = {
   bulkFrom: 10, // Оптовая цена при покупке 10+ единиц одной модели.
   minOrder: 3, // Меньше 10 единиц — цена согласуется отдельно.
   origin: process.env.PUBLIC_ORIGIN || (process.env.NODE_ENV==='production' ? 'https://qronge-sale.ru' : 'http://localhost:3000'),
-  metrikaId: /^\d+$/.test(process.env.METRIKA_ID || '') ? process.env.METRIKA_ID : '',
+  metrikaId: '113405844',
   sellerName: process.env.SELLER_NAME || '', sellerInn: process.env.SELLER_INN || '',
   sellerAddress: process.env.SELLER_ADDRESS || '', privacyEmail: process.env.PRIVACY_EMAIL || '',
 };
