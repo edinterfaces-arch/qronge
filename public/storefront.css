@@ -267,3 +267,36 @@ html.request-dialog-open { overflow: hidden; }
  .request-dialog .request-copy h2 { font-size: 25px; }
  .request-dialog .form-row { grid-template-columns: minmax(0,1fr) 110px; }
 }
+
+/* Factual storefront: original brand marks and real shop photography. */
+.brand .brand-logo { display: block; width: 210px; height: auto; max-width: 100%; }
+.store-intro h1 { max-width: 17ch; font-size: clamp(32px,3.3vw,48px); font-weight: 700; line-height: 1.15; }
+.store-intro .store-hero-address { max-width: 36ch; margin: 0 0 20px; font-size: 16px; line-height: 1.65; }
+.store-hero-phone { display: inline-block; font-size: 23px; font-weight: 650; text-decoration: none; letter-spacing: -.02em; }
+.store-cover img { border-radius: 12px; }
+.store-brands { padding-block: 8px 20px; }
+.brand-logos { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); align-items: center; gap: 60px; list-style: none; padding: 36px 0; margin: 0; border-block: 1px solid var(--color-rule); }
+.brand-logos li { display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 8px 12px; }
+.brand-logos img { display: block; width: 100%; max-width: 270px; height: 44px; object-fit: contain; }
+.brand-logos .qronge-logo { filter: brightness(0); max-width: 230px; }
+.shop-photo-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+.shop-photo-grid figure { min-width: 0; margin: 0; }
+.shop-photo-grid img { width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; }
+.journal-image img { aspect-ratio: 3/2; }
+.article-cover img { aspect-ratio: 3/2; max-height: none; }
+@media(max-width:760px){
+ .brand .brand-logo { width: 180px; }
+ .brand-logos { gap: 20px; padding-block: 24px; }
+ .brand-logos li { padding: 4px; }
+ .brand-logos img { height: 34px; }
+ .shop-photo-grid { gap: 14px; }
+ .store-intro h1 { font-size: clamp(30px,6vw,42px); }
+}
+@media(max-width:520px){
+ .brand-logos { grid-template-columns: 1fr; gap: 20px; padding-block: 28px; }
+ .brand-logos li { min-height: 40px; }
+ .brand-logos img { max-width: 220px; height: 32px; }
+ .brand-logos .qronge-logo { max-width: 190px; }
+ .shop-photo-grid { grid-template-columns: 1fr; }
+ .shop-photo-grid img { aspect-ratio: 4/3; }
+}

@@ -1,0 +1,127 @@
+{
+  "mode": "built-in image_gen",
+  "style": "playful colorful friendly editorial illustration",
+  "date": "2026-10-04",
+  "images": [
+    {
+      "id": 1,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a friendly adult bicycle courier wearing a helmet, standing beside a sturdy electric cargo bicycle with a delivery bag, in a simplified city courtyard. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-0665382c-7b7b-4b48-8537-bc902e8b48be.png",
+      "asset": "public/assets/blog/velosipedy-dlya-kurerov.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a friendly helmeted courier on an electric delivery bicycle moving along a curving city route between a cafe, a grocery shop and apartment buildings; a simple curved route line connects these places. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-f44055d5-c615-41dc-8c45-9b2f35444d3a.png",
+      "asset": "public/assets/blog/elektrovelosipedy-dlya-dostavki.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a wholesale buyer comparing two neat groups of electric bicycles beside a desk with a calculator and plain unlettered order sheets; a tidy warehouse setting. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-bfd6d6bb-8749-407e-9efb-3f2bf441b08d.png",
+      "asset": "public/assets/blog/velosipedy-optom.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a small fleet of colorful electric cargo bicycles lined up at a delivery depot; a friendly adult dispatcher holding an unlettered clipboard, clear rhythm of wheels and frames. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-974296cf-1d17-4016-87e1-9b6553fb6274.png",
+      "asset": "public/assets/blog/velopark-dlya-sluzhby-dostavki.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a friendly adult rental-shop owner handing a bicycle key to a helmeted courier beside one electric delivery bicycle, with a neat rack of rental bicycles behind them. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-752f7e26-4648-4f45-b7f0-cfb84e9112c9.png",
+      "asset": "public/assets/blog/velosipedy-dlya-arendy-kureram.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a close-up editorial still life of a removable electric bicycle battery with a simple charge indicator and its charger, beside part of a colorful bicycle and a helmet; friendly mint studio backdrop. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-c4ff172e-8020-4098-90b5-1b970e77163e.png",
+      "asset": "public/assets/blog/akkumulyator-dlya-kurerskogo-velosipeda.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a friendly adult bicycle mechanic in blue overalls adjusting the rear wheel of an electric delivery bicycle on a repair stand, organized tools on a simple orange workshop wall. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-e94dc4d6-9c9e-48de-a028-abebc0071b17.png",
+      "asset": "public/assets/blog/obsluzhivanie-kurerskih-velosipedov.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a sturdy electric cargo bicycle shown side-on with a correctly secured delivery box on the rear rack, a small group of parcels beside the bicycle and a friendly helmeted courier checking the load; pale blue backdrop. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-740cc37e-7c05-4eef-8fdd-20e355e12aab.png",
+      "asset": "public/assets/blog/gruzopodemnost-velosipeda-dlya-dostavki.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a friendly adult small-business owner planning a bicycle fleet budget at a desk, with a calculator, blank ledger, small tidy coin stacks and two colorful electric bicycles visible through a workshop window. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-f8834c48-3917-4653-8dcf-bef5a20e872d.png",
+      "asset": "public/assets/blog/stoimost-veloparka.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: a friendly adult warehouse worker inspecting a newly delivered electric bicycle beside open protective packaging, comparing it with an unlettered checklist; clear view of the bicycle and the worker's attentive gesture. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-1ddbb73f-6472-44f5-a03e-ffa415b2c54d.png",
+      "asset": "public/assets/blog/priemka-partii-velosipedov.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: two friendly adult warehouse workers carefully loading large cardboard bicycle shipping cartons into a small delivery truck, a fully visible bicycle waiting beside the ramp, simple sunny logistics yard. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-ee68bd02-50e6-4ee5-9031-852eb0aff06a.png",
+      "asset": "public/assets/blog/dostavka-velosipedov-transportnoy-kompaniey.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Use case: illustration-story. Asset type: landscape cover illustration for a Russian bicycle-business blog, 3:2 composition. Scene: three distinct generic electric courier bicycles presented side by side in a bright simple showroom: one compact low step-through, one with a larger battery, one with a larger rear rack; clear visual comparison, no people, no model names or claims. Playful colorful friendly contemporary editorial illustration, bold clean shapes, rounded geometry, subtle paper texture, sophisticated cheerful orange, cobalt blue, mint and butter yellow. Clear silhouette, few objects, generous breathing room, no UI frames. Bicycle fully in frame with two coherent wheels. No words, lettering, numbers, brands, logos or watermark. This is a conceptual editorial illustration, not a product photograph. Subject centered with generous safe margins for responsive cropping.",
+      "sourcePath": "/Users/eduardkhamzin/.codex/generated_images/01a0fd12-d0d0-7e53-9844-17594ace2bb3/exec-8e3e5b99-1d82-41cb-8dd4-37acc0f52984.png",
+      "asset": "public/assets/blog/qronge-m3-m4-m5-dlya-biznesa.webp",
+      "dimensions": [
+        1200,
+        800
+      ]
+    }
+  ]
+}
