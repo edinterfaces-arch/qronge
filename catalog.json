@@ -28,9 +28,7 @@
     "description": "Электровелосипед QRONGE M4 для бизнеса. Самовывоз или отправка любой транспортной компанией после 100% оплаты.",
     "specs": [],
     "price": 54000,
-    "retailPrice": 82900,
-    "retailSource": "Futumag · M4 45 Ah",
-    "retailUrl": "https://krasnoyarsk.futumag.ru/catalog/elektrovelosipy/QRONGE/elektrovelosiped_qronge_m4_45ah_60v/",
+    "retailPrice": 68900,
     "variants": [
       {
         "sku": "R1010095",
@@ -39,7 +37,11 @@
       }
     ],
     "image": "/assets/m4.webp",
-    "imageNote": ""
+    "imageNote": "",
+    "retailPriceKind": "store",
+    "previousRetailPrice": 82900,
+    "previousWholesalePrice": 65000,
+    "retailPriceCalculation": "82900 * 54000 / 65000, rounded to nearest 100 RUB; approved pricing method from owner"
   },
   {
     "slug": "m3-pro-plus",
