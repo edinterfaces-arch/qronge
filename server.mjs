@@ -78,7 +78,7 @@ const server=http.createServer(async(req,res)=>{
   if(path==='/api/leads'){if(req.method!=='POST')return json(res,405,{error:'Method not allowed'});return await lead(req,res);}
   if(!['GET','HEAD'].includes(req.method))return send(res,405,'Method not allowed','text/plain');
   if(path==='/admin'||path.startsWith('/admin/'))return await admin(req,res,path);
-  if(path==='/robots.txt')return send(res,200,`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /privacy/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&model /\nSitemap: ${config.origin}/sitemap.xml\n`,'text/plain; charset=utf-8');
+  if(path==='/robots.txt')return send(res,200,`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&model /\nSitemap: ${config.origin}/sitemap.xml\n`,'text/plain; charset=utf-8');
   if(path==='/sitemap.xml')return send(res,200,sitemap(),'application/xml; charset=utf-8');
   if(path==='/')return send(res,200,wholesalePage('bike','/'));
   if(path==='/blog'||path.startsWith('/blog/')){res.writeHead(308,{Location:'/'+u.search});return res.end();}
