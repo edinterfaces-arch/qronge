@@ -4,8 +4,6 @@ import { resolve, extname } from 'node:path';
 import { randomUUID, createHash, timingSafeEqual } from 'node:crypto';
 import pg from 'pg';
 import { config, saleActive } from './config.mjs';
-import { home, blogPage, articlePage, legalPage, documentPage, pendingDocuments } from './pages.mjs';
-import { articles, articlePath } from './articles.mjs';
 import { products, wholesalePage, productPage, infoPage, notFound, sitemap, categoryPaths, escape } from './render.mjs';
 
 const production=process.env.NODE_ENV==='production', port=Number(process.env.PORT||3000);
@@ -82,16 +80,14 @@ const server=http.createServer(async(req,res)=>{
   if(path==='/admin'||path.startsWith('/admin/'))return await admin(req,res,path);
   if(path==='/robots.txt')return send(res,200,`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nDisallow: /privacy/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&model /\nSitemap: ${config.origin}/sitemap.xml\n`,'text/plain; charset=utf-8');
   if(path==='/sitemap.xml')return send(res,200,sitemap(),'application/xml; charset=utf-8');
-  if(path==='/')return send(res,200,home());
-  if(path==='/blog/')return send(res,200,blogPage());
-  if(path==='/legal/')return send(res,200,legalPage());
-  const article=articles.find(a=>path===articlePath(a));if(article)return send(res,200,articlePage(article));
-  const documentSlug=path.match(/^\/legal\/([^/]+)\/$/)?.[1];if(Object.hasOwn(pendingDocuments,documentSlug))return send(res,200,documentPage(documentSlug));
+  if(path==='/'){res.writeHead(308,{Location:'/opt/'+u.search});return res.end();}
+  if(path==='/blog'||path.startsWith('/blog/')){res.writeHead(308,{Location:'/opt/'+u.search});return res.end();}
+  if(path==='/legal/'||path.startsWith('/legal/')){res.writeHead(308,{Location:'/opt/'+u.search});return res.end();}
   if(path==='/elektrovelosipedy/'||path==='/elektrovelosipedy'){res.writeHead(301,{Location:'/opt/'+u.search});return res.end();}
   if(path==='/privacy/'||path==='/terms/')return send(res,200,infoPage(path.split('/')[1]));
   for(const [cat,route] of Object.entries(categoryPaths))if(path===route)return send(res,200,wholesalePage(cat,route));
   const p=products.find(p=>path===`/catalog/${p.slug}/`);if(p)return send(res,200,productPage(p));
-  if(!path.endsWith('/')&&!extname(path)&&(products.some(p=>path===`/catalog/${p.slug}`)||Object.values(categoryPaths).includes(path+'/')||['/privacy','/terms','/blog','/legal',...articles.map(a=>articlePath(a).slice(0,-1)),...Object.keys(pendingDocuments).map(slug=>'/legal/'+slug)].includes(path))){res.writeHead(308,{Location:path+'/'+u.search});return res.end();}
+  if(!path.endsWith('/')&&!extname(path)&&(products.some(p=>path===`/catalog/${p.slug}`)||Object.values(categoryPaths).includes(path+'/')||['/privacy','/terms'].includes(path))){res.writeHead(308,{Location:path+'/'+u.search});return res.end();}
   const file=resolve(staticRoot,'.'+path);
   if(file.startsWith(staticRoot+'/')&&existsSync(file)&&extname(file))return send(res,200,readFileSync(file),({'.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.ttf':'font/ttf'})[extname(file)]||'application/octet-stream',{'Cache-Control':'public, max-age=3600'});
   return send(res,404,notFound());

@@ -292,6 +292,34 @@ html.request-dialog-open { overflow: hidden; }
  .shop-photo-grid { gap: 14px; }
  .store-intro h1 { font-size: clamp(30px,6vw,42px); }
 }
+
+/* Catalog-only storefront header and store details at the end of the catalog. */
+.header-inner { grid-template-columns: minmax(0,1fr) auto; }
+.header-inner .brand { grid-column: 1; }
+.brand .brand-address { max-width: 42ch; color: var(--color-charcoal); font-size: 13px; line-height: 1.5; font-weight: 600; }
+.phone { grid-column: 2; }
+.catalog-intro .catalog-offer { max-width: 70ch; margin-bottom: 8px; color: #a73b0c; font-size: clamp(17px,1.8vw,22px); font-weight: 700; line-height: 1.45; }
+.catalog-store { padding-block: 56px 72px; background: var(--color-paper-soft); }
+.catalog-store h2 { margin: 0 0 24px; font-size: clamp(28px,3.2vw,40px); line-height: 1.2; }
+.catalog-store-photos { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-bottom: 34px; }
+.catalog-store-photos img { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; }
+.catalog-store-info { display: grid; grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); gap: 40px; align-items: start; }
+.catalog-store-info h3 { margin: 0 0 12px; font-size: 23px; }
+.catalog-store-info p { max-width: 52ch; font-size: 15px; line-height: 1.7; }
+.catalog-store-phone { display: inline-block; margin: 8px 0; font-size: 25px; font-weight: 700; }
+.catalog-store .map-panel iframe { height: 360px; }
+@media(max-width:760px){
+ .header-inner { grid-template-columns: minmax(0,1fr) auto; }
+ .catalog-store { padding-block: 42px; }
+ .catalog-store-photos { gap: 10px; }
+ .catalog-store-info { grid-template-columns: 1fr; gap: 20px; }
+ .catalog-store .map-panel iframe { height: 300px; }
+}
+@media(max-width:520px){
+ .catalog-store-photos { grid-template-columns: 1fr; }
+ .catalog-store-photos img { aspect-ratio: 3/2; }
+ .brand .brand-address { font-size: 11px; }
+}
 @media(max-width:520px){
  .brand-logos { grid-template-columns: 1fr; gap: 20px; padding-block: 28px; }
  .brand-logos li { min-height: 40px; }
