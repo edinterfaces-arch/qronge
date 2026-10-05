@@ -16,7 +16,17 @@ if(production&&databaseUrl){
  if(process.env.ADMIN_PASSWORD.length<20)throw new Error('ADMIN_PASSWORD must have at least 20 characters.');
 }
 if(production&&databaseUrl&&!process.env.DATABASE_CA_CERT)throw new Error('Set DATABASE_CA_CERT to the PostgreSQL CA certificate before launch.');
-const pool=databaseUrl?new Pool({connectionString:databaseUrl,ssl:production?{ca:process.env.DATABASE_CA_CERT.replace(/\\n/g,'\n'),rejectUnauthorized:true}:undefined,max:10,idleTimeoutMillis:30000,connectionTimeoutMillis:10000}):null;
+let connectionString=databaseUrl;
+if(production&&databaseUrl){
+ let url;
+ try{url=new URL(databaseUrl);}catch{throw new Error('Set a valid PostgreSQL DATABASE_URL.');}
+ if(!['postgres:','postgresql:'].includes(url.protocol))throw new Error('DATABASE_URL must use the PostgreSQL protocol.');
+ // pg reparses URL SSL options and would replace our trusted CA configuration.
+ // Production always verifies both the certificate chain and database hostname.
+ for(const key of ['ssl','sslmode','sslcert','sslkey','sslrootcert','sslnegotiation','uselibpqcompat'])url.searchParams.delete(key);
+ connectionString=url.toString();
+}
+const pool=databaseUrl?new Pool({connectionString,ssl:production?{ca:process.env.DATABASE_CA_CERT.replace(/\\n/g,'\n'),rejectUnauthorized:true}:undefined,max:10,idleTimeoutMillis:30000,connectionTimeoutMillis:10000}):null;
 if(pool)await pool.query(`CREATE TABLE IF NOT EXISTS leads(id TEXT PRIMARY KEY, request_id TEXT UNIQUE NOT NULL, fingerprint TEXT NOT NULL, created_at TIMESTAMPTZ NOT NULL, name TEXT NOT NULL, phone TEXT NOT NULL, model TEXT NOT NULL, variant TEXT NOT NULL, quantity INTEGER NOT NULL, price INTEGER, bulk INTEGER NOT NULL, consent TEXT NOT NULL, attribution TEXT NOT NULL, path TEXT NOT NULL);
  CREATE TABLE IF NOT EXISTS rate_limits(key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires BIGINT NOT NULL);`);
 async function cleanup(){await pool.query("DELETE FROM leads WHERE created_at < NOW() - INTERVAL '90 days'");await pool.query('DELETE FROM rate_limits WHERE expires < $1',[Date.now()]);}
