@@ -163,5 +163,18 @@
     ],
     "reuse": "Public manufacturer/dealer catalog photo; no explicit open reuse license found. Existing user-owned site photos preferred when available.",
     "siteFile": "public/assets/x1.webp"
+  },
+  {
+    "model": "M4",
+    "file": "public/assets/m4-photo-20261005.webp",
+    "source": "https://uralelectronica.ru/catalog/elektrovelosipedy/qronge/15274/",
+    "image": "https://uralelectronica.ru/upload/dev2fun.imagecompress/webp/iblock/982/vfzzwa4xdwvwjrg03mdumrurancb858m.webp",
+    "dimensions": [
+      900,
+      1042
+    ],
+    "checkedAt": "2026-10-05",
+    "match": "Black and orange Qronge M4, model label visible. Source photograph has packaging and a partially cropped basket. No retouching or AI upscaling. Replaces 300 x 300 thumbnail.",
+    "reuse": "Public dealer catalog photo; no explicit open reuse license found."
   }
 ]

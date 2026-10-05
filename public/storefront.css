@@ -335,3 +335,30 @@ html.request-dialog-open { overflow: hidden; }
  .shop-photo-grid { grid-template-columns: 1fr; }
  .shop-photo-grid img { aspect-ratio: 4/3; }
 }
+
+/* Compact wholesale introduction: one message and a decorative warehouse illustration. */
+.catalog-intro { padding-block: 24px; }
+.catalog-hero { --hero-paper: #fff7ee; --hero-rule: #f2decb; background: var(--hero-paper); border: 1px solid var(--hero-rule); border-radius: 14px; overflow: hidden; }
+.catalog-hero--illustrated { display: grid; grid-template-columns: minmax(0,1.45fr) minmax(0,1fr); align-items: center; }
+.catalog-hero-copy { min-width: 0; padding: 32px; }
+.catalog-hero h1 { max-width: 24ch; margin-bottom: 16px; font-size: clamp(30px,2.8vw,42px); line-height: 1.12; text-wrap: balance; }
+.catalog-hero .catalog-offer { margin: 0 0 12px; max-width: 52ch; font-size: clamp(17px,1.5vw,20px); line-height: 1.45; }
+.catalog-hero-description { max-width: 76ch; margin: 0; color: var(--color-charcoal); font-size: 14px; line-height: 1.65; }
+.catalog-hero-art { min-width: 0; align-self: stretch; display: grid; align-items: center; }
+.catalog-hero-art img { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: contain; mix-blend-mode: multiply; }
+.catalog-store-photos .store-lineup { object-position: 50% 44%; }
+@media(max-width:1024px){
+ .catalog-hero--illustrated { grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); }
+ .catalog-hero-copy { padding: 24px; }
+ .catalog-hero h1 { font-size: 30px; }
+ .catalog-hero-description { font-size: 13px; }
+}
+@media(max-width:640px){
+ .catalog-intro { padding-block: 16px 20px; }
+ .catalog-hero--illustrated { display: block; }
+ .catalog-hero-copy { padding: 20px; }
+ .catalog-hero h1 { max-width: none; font-size: clamp(25px,6.2vw,32px); }
+ .catalog-hero .catalog-offer { font-size: 16px; }
+ /* Keep the catalog close to the introduction on small screens. */
+ .catalog-hero-art { display: none; }
+}

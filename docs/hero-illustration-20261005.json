@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-05",
+  "tool": "image_gen built-in",
+  "asset": "public/assets/wholesale-hero-20261005.webp",
+  "prompt": "Use case: illustration-story. Asset: compact right-hand illustration for a Russian QRONGE wholesale electric bicycle catalog hero. Create a refined editorial illustration of a small electric delivery bicycle fleet leaving a warehouse: one foreground charcoal step-through utility e-bike with small fat wheels, front basket and rear delivery rack; one secondary bike behind; a few stacked shipping cartons and a minimal open warehouse bay. No riders needed. Friendly but grown-up premium commercial illustration, precise vector-like flat shapes with a restrained paper grain, subtle depth, angular perspective. Palette only warm orange #f47b20, charcoal #242424, warm ivory #fff7ee, muted tan. Off-white warm ivory background #fff7ee, composition compact and centered, generous breathing room, entire bicycle wheels visible, landscape 4:3. This is a conceptual illustration, no product-specific technical claims. No typography, lettering, logos, numbers, price tags, badges, UI, gradients, glow, or watermark. Visually balanced and legible at 360px wide.",
+  "note": "Conceptual illustration, decorative alt, not a photo of the exact products. Encoded to 960 x 720 WebP for the site.",
+  "storePhoto": {
+    "asset": "public/assets/store-lineup-20261005.webp",
+    "source": "User supplied photo_2026-10-05 12.15.52.jpeg",
+    "placement": "Second photo of the Магазин gallery"
+  }
+}
