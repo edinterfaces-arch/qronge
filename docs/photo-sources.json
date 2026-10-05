@@ -176,5 +176,15 @@
     "checkedAt": "2026-10-05",
     "match": "Black and orange Qronge M4, model label visible. Source photograph has packaging and a partially cropped basket. No retouching or AI upscaling. Replaces 300 x 300 thumbnail.",
     "reuse": "Public dealer catalog photo; no explicit open reuse license found."
+  },
+  {
+    "model": "M4",
+    "file": "public/assets/m4-catalog-20261005.png",
+    "source": "https://zaxboard.ru/elektrovelosipedy-dlya-kurerov/tproduct/1811700151-180286073143-elektrovelosiped-qronge-m4-45ah-li-ion-1",
+    "image": "https://static.tildacdn.com/stor6639-3036-4166-a566-366531623562/1527049f4cdc779216f6cd150a05df08.png",
+    "dimensions": "1024x1024",
+    "match": "QRONGE M4 45Ah named on source page and image. Orange background; unmodified dealer product image.",
+    "reuse": "Public dealer image; no explicit open reuse license found.",
+    "date": "2026-10-05"
   }
 ]

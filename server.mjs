@@ -115,7 +115,7 @@ const server=http.createServer(async(req,res)=>{
   const p=products.find(p=>path===`/catalog/${p.slug}/`);if(p)return sendPage(res,200,productPage(p));
   if(!path.endsWith('/')&&!extname(path)&&(products.some(p=>path===`/catalog/${p.slug}`)||Object.values(categoryPaths).includes(path+'/')||['/privacy','/terms'].includes(path))){res.writeHead(308,{Location:path+'/'+u.search});return res.end();}
   const file=resolve(staticRoot,'.'+path);
-  if(file.startsWith(staticRoot+'/')&&existsSync(file)&&extname(file))return send(res,200,readFileSync(file),({'.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.ttf':'font/ttf'})[extname(file)]||'application/octet-stream',{'Cache-Control':'public, max-age=3600'});
+  if(file.startsWith(staticRoot+'/')&&existsSync(file)&&extname(file))return send(res,200,readFileSync(file),({'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.ttf':'font/ttf'})[extname(file)]||'application/octet-stream',{'Cache-Control':'public, max-age=3600'});
   return sendPage(res,404,notFound());
  }catch(error){if(!res.headersSent)json(res,error.status||500,{error:error.status?error.message:'Не удалось обработать запрос. Повторите позже или позвоните нам.'});else res.end();console.error('Request failed:',error.name);}
 });
