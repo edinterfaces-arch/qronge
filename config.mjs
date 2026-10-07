@@ -1,4 +1,6 @@
 export const config = {
+  // Keep the public storefront closed until the owner explicitly requests reopening.
+  maintenance: true,
   brand: 'MOKWHEEL', store: 'MOKWHEEL',
   phone: '+7 917 460-07-07', phoneHref: '+79174600707',
   pickup: 'ТК «Южные ворота», выход 5, линия Ж8, павильоны 122–128',

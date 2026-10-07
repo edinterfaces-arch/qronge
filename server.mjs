@@ -98,6 +98,11 @@ const server=http.createServer(async(req,res)=>{
   const u=new URL(req.url,config.origin),path=decodeURIComponent(u.pathname);
   if(path==='/healthz')return json(res,200,{ok:true});
   if(path==='/readyz'){if(!pool)return json(res,503,{ok:false,database:'not_configured'});await pool.query('SELECT 1');return json(res,200,{ok:true});}
+  if(config.maintenance&&path!=='/robots.txt'&&path!=='/admin'&&!path.startsWith('/admin/')){
+   const retry={'Retry-After':'3600'};
+   if(path.startsWith('/api/'))return send(res,503,JSON.stringify({ok:false,error:'Сайт временно недоступен. Приём заявок приостановлен.'}),'application/json; charset=utf-8',retry);
+   return send(res,503,'<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Сайт временно недоступен | QRONGE</title><style>body{margin:0;background:#faf9f6;color:#242424;font-family:system-ui,sans-serif}main{max-width:620px;margin:18vh auto;padding:32px}h1{font-size:clamp(28px,5vw,42px);line-height:1.15}p{font-size:18px;line-height:1.6;color:#555}</style></head><body><main><h1>Сайт временно недоступен</h1><p>Работа сайта и приём заявок приостановлены.</p></main></body></html>','text/html; charset=utf-8',retry);
+  }
   if(path==='/api/leads'){if(req.method!=='POST')return json(res,405,{error:'Method not allowed'});return await lead(req,res);}
   if(!['GET','HEAD'].includes(req.method))return send(res,405,'Method not allowed','text/plain');
   if(path==='/admin'||path.startsWith('/admin/'))return await admin(req,res,path);
