@@ -1,11 +1,11 @@
-# Temporary closure
+# Storefront availability
 
-The owner requested that the website remain closed until explicitly instructed otherwise.
+Current state: `maintenance: false`. The owner explicitly requested reopening on 2026-10-09.
 
-`config.mjs`: `maintenance: true` blocks the public storefront, product pages, static files and lead submission with HTTP 503 and `Retry-After: 3600`. That header suggests when a client may retry; it does not schedule reopening. The temporary page has no analytics or order form and responses are not cached.
+The switch in `config.mjs` is changed only at the owner's request. Set `maintenance: true` to temporarily block the public storefront, product pages, static files and lead submission with HTTP 503 and `Retry-After: 3600`. That header suggests when a client may retry; it does not schedule reopening. The temporary page has no analytics or order form and responses are not cached.
 
-Health/readiness endpoints remain available for hosting checks. Robots rules remain unchanged. The existing authenticated admin stays available to the owner; credentials and database configuration are unchanged. This change does not delete stored leads or alter existing retention rules.
+Health/readiness endpoints and the existing authenticated admin remain available during maintenance. Robots rules remain unchanged. Stored leads and retention rules are unaffected.
 
-To reopen, only after an explicit owner request: set `maintenance: false`, commit and push to main, and confirm the Timeweb deployment. Review the current price/offer expiration date before reopening.
+To reopen: set `maintenance: false`, commit to main, and confirm the Timeweb deployment and public availability. Review the current price/offer expiration date before reopening.
 
-This closes public access at the application level; it does not stop paid hosting/database resources or pause advertising campaigns.
+Maintenance does not stop paid hosting/database resources or pause advertising campaigns.
